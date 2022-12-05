@@ -1,16 +1,13 @@
 import io
-from pyrogram import filters, Client, enums
+
+from pyrogram import Client, enums, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
-from database.filters_mdb import(
-   add_filter,
-   get_filters,
-   delete_filter,
-   count_filters
-)
 
 from database.connections_mdb import active_connection
-from utils import get_file_id, parser, split_quotes
+from database.filters_mdb import (add_filter, count_filters, delete_filter,
+                                  get_filters)
 from info import ADMINS
+from utils import get_file_id, parser, split_quotes
 
 
 @Client.on_message(filters.command(['filter', 'add']) & filters.incoming)
