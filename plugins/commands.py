@@ -99,7 +99,7 @@ async def start(client, message):
         btn = [
             [
                 InlineKeyboardButton(
-                    "Join our Channel", url=invite_link.invite_link
+                    "💢 𝙹𝚘𝚒𝚗 𝙾𝚞𝚛 𝙲𝚑𝚊𝚗𝚗𝚎𝚕 💢", url=invite_link.invite_link
                 )
             ]
         ]
@@ -126,7 +126,7 @@ async def start(client, message):
                 )
         await client.send_message(
             chat_id=message.from_user.id,
-            text="**Please Join My Updates Channel to use this Bot!**",
+            text="**താഴെ കൊടുത്തിട്ടുള്ള ചാനലിൽ ജോയിൻ ചെയ്താൽ മാത്രമേ ഫയൽ കിട്ടുകയോള്ളൂ..\n\nJoin my channel mentioned above to get the file you requested..**",
             reply_markup=InlineKeyboardMarkup(btn),
             parse_mode=enums.ParseMode.MARKDOWN,
         )
