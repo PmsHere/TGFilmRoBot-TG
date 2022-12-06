@@ -28,7 +28,6 @@ from database.ia_filterdb import Media, get_file_details, get_search_results
 from database.users_chats_db import db
 from info import (
     ADMINS,
-    DELETE_TIME,
     AUTH_CHANNEL,
     AUTH_GROUPS,
     AUTH_USERS,
@@ -842,42 +841,26 @@ async def auto_filter(client, msg, spoll=False):
             **locals(),
         )
     else:
-        cap = f"<b>ആദ്യം ഈ ബോട്ടിൽ പോയിട്ട് ജോയിൻ ആവുക. അതിനു ശേഷം ഇവിടെ മൂവി ക്ലിക്ക് ചെയ്യുക.\nബോട്ട് 👉@TGFilmRobot👈.\nHere is what i found for your query👇👇👇👇\n #{search}</b>"
-
-    if imdb and imdb.get('poster'):
-
+        cap = f"Here is what i found for your query {search}"
+    if imdb and imdb.get("poster"):
         try:
-
-            fmsg = await message.reply_photo(photo=imdb.get('poster'), caption=cap[:1024],
-
-                                      reply_markup=InlineKeyboardMarkup(btn))
-
+            await message.reply_photo(
+                photo=imdb.get("poster"),
+                caption=cap[:1024],
+                reply_markup=InlineKeyboardMarkup(btn),
+            )
         except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
-
-            pic = imdb.get('poster')
-
-            poster = pic.replace('.jpg', "._V1_UX360.jpg")
-
-            fmsg = await message.reply_photo(photo=poster, caption=cap[:1024], reply_markup=InlineKeyboardMarkup(btn))
-
+            pic = imdb.get("poster")
+            poster = pic.replace(".jpg", "._V1_UX360.jpg")
+            await message.reply_photo(
+                photo=poster, caption=cap[:1024], reply_markup=InlineKeyboardMarkup(btn)
+            )
         except Exception as e:
-
             logger.exception(e)
-
-            fmsg = await message.reply_text(cap, reply_markup=InlineKeyboardMarkup(btn))
-
+            await message.reply_text(cap, reply_markup=InlineKeyboardMarkup(btn))
     else:
-
-        fmsg = await message.reply_text(cap, reply_markup=InlineKeyboardMarkup(btn))
-
-    
-
-    await asyncio.sleep(DELETE_TIME)
-
-    await fmsg.delete()
-
+        await message.reply_text(cap, reply_markup=InlineKeyboardMarkup(btn))
     if spoll:
-
         await msg.message.delete()
 
 
