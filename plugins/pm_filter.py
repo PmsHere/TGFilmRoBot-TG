@@ -28,6 +28,7 @@ from database.ia_filterdb import Media, get_file_details, get_search_results
 from database.users_chats_db import db
 from info import (
     ADMINS,
+    DELETE_TIME,
     AUTH_CHANNEL,
     AUTH_GROUPS,
     AUTH_USERS,
@@ -844,7 +845,7 @@ async def auto_filter(client, msg, spoll=False):
         cap = f"Here is what i found for your query {search}"
     if imdb and imdb.get("poster"):
         try:
-            await message.reply_photo(
+           fmsg = await message.reply_photo(
                 photo=imdb.get("poster"),
                 caption=cap[:1024],
                 reply_markup=InlineKeyboardMarkup(btn),
@@ -852,14 +853,18 @@ async def auto_filter(client, msg, spoll=False):
         except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
             pic = imdb.get("poster")
             poster = pic.replace(".jpg", "._V1_UX360.jpg")
-            await message.reply_photo(
+           fmsg = await message.reply_photo(
                 photo=poster, caption=cap[:1024], reply_markup=InlineKeyboardMarkup(btn)
             )
         except Exception as e:
             logger.exception(e)
-            await message.reply_text(cap, reply_markup=InlineKeyboardMarkup(btn))
+           fmsg = await message.reply_text(cap, reply_markup=InlineKeyboardMarkup(btn))
     else:
-        await message.reply_text(cap, reply_markup=InlineKeyboardMarkup(btn))
+       fmsg = await message.reply_text(cap, reply_markup=InlineKeyboardMarkup(btn))
+    
+    await asyncio.sleep(DELETE_TIME)
+    await fmsg.delete() 
+    
     if spoll:
         await msg.message.delete()
 
