@@ -75,7 +75,7 @@ async def next_page(bot, query):
     search = BUTTONS.get(key)
     if not search:
         await query.answer(
-            "You are using one of my old messages, please send the request again.",
+            "നിങ്ങൾ എന്റെ പഴയ സന്ദേശങ്ങളിലൊന്നാണ് ഉപയോഗിക്കുന്നത്, ദയവായി വീണ്ടും സെർച്ച് ചെയ്യുക.\n\n🤦‍♂You are using one of my old messages, please send the request again",
             show_alert=True,
         )
         return
@@ -171,13 +171,13 @@ async def next_page(bot, query):
 async def advantage_spoll_choker(bot, query):
     _, user, movie_ = query.data.split("#")
     if int(user) != 0 and query.from_user.id != int(user):
-        return await query.answer("okDa", show_alert=True)
+        return await query.answer("⚠ ബ്രോ, മറ്റുള്ളവർ റിക്വസ്റ്റ് ചെയിത മൂവിയിൽ കുത്തി നോക്കാതെ ബ്രോന് വേണ്ടത് ബ്രോ റിക്വസ്റ്റ് ചെയ്യുക.🙏\n\n⚠ Bro, Search Your Own File, Don't Click Others Requested Files", show_alert=True)
     if movie_ == "close_spellcheck":
         return await query.message.delete()
     movies = SPELL_CHECK.get(query.message.reply_to_message.id)
     if not movies:
         return await query.answer(
-            "You are clicking on an old button which is expired.", show_alert=True
+            "നിങ്ങൾ എന്റെ പഴയ സന്ദേശങ്ങളിലൊന്നാണ് ഉപയോഗിക്കുന്നത്, ദയവായി വീണ്ടും സെർച്ച് ചെയ്യുക.\n\n🤦‍♂You are using one of my old messages, please send the request again", show_alert=True
         )
     movie = movies[(int(movie_))]
     await query.answer("Checking for Movie in database...")
@@ -433,7 +433,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     caption=f_caption,
                     protect_content=True if ident == "filep" else False,
                 )
-                await query.answer("Check PM, I have sent files in pm", show_alert=True)
+                await query.answer("ഇനി ജോയിൻ ആയ ഈ ബോട്ടിൽ @TGFilmRobot മതി. മൂവി ഫയൽ അവിടെ വന്നിട്ടുണ്ടാകും.\nCheck PM of the this Bot.", show_alert=True)
         except UserIsBlocked:
             await query.answer("Unblock the bot mahn !", show_alert=True)
         except PeerIdInvalid:
@@ -489,11 +489,11 @@ async def cb_handler(client: Client, query: CallbackQuery):
             ],
             [
                 InlineKeyboardButton("🔍 Search", switch_inline_query_current_chat=""),
-                InlineKeyboardButton("🤖 Updates", url="https://t.me/TeamEvamaria"),
+                InlineKeyboardButton("⭐ Channel", url="https://t.me/MalluTorentzTG"),
             ],
             [
-                InlineKeyboardButton("ℹ️ Help", callback_data="help"),
-                InlineKeyboardButton("😊 About", callback_data="about"),
+                InlineKeyboardButton("🧰 Help", callback_data="help"),
+                InlineKeyboardButton("🔖 About", callback_data="about"),
             ],
         ]
         reply_markup = InlineKeyboardMarkup(buttons)
@@ -529,8 +529,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
     elif query.data == "about":
         buttons = [
             [
-                InlineKeyboardButton("🤖 Updates", url="https://t.me/TeamEvamaria"),
-                InlineKeyboardButton("♥️ Source", callback_data="source"),
+                InlineKeyboardButton("⭐ Channel", url="https://t.me/MalluTorentzTG"),
+                InlineKeyboardButton("♥️ More", callback_data="source"),
             ],
             [
                 InlineKeyboardButton("🏠 Home", callback_data="start"),
@@ -841,7 +841,7 @@ async def auto_filter(client, msg, spoll=False):
             **locals(),
         )
     else:
-        cap = f"Here is what i found for your query {search}"
+        cap = f"<b>ആദ്യം ഈ ബോട്ടിൽ പോയിട്ട് ജോയിൻ ആവുക. അതിനു ശേഷം ഇവിടെ മൂവി ക്ലിക്ക് ചെയ്യുക.\nബോട്ട് 👉@TGFilmRobot👈.\nHere is what i found for your query👇👇👇👇\n #{search}</b>"
     if imdb and imdb.get("poster"):
         try:
             await message.reply_photo(
