@@ -15,7 +15,7 @@ from pyrogram.raw.all import layer
 from database.ia_filterdb import Media
 from database.users_chats_db import db
 from info import API_HASH, API_ID, BOT_TOKEN, LOG_STR, SESSION, USER_SESSION
-from utils import temp
+from utils import temp, scheduler
 
 User = Client("userBot", API_ID, API_HASH, session_string=USER_SESSION)
 
@@ -42,6 +42,7 @@ class Bot(Client):
         await super().start()
         await Media.ensure_indexes()
         me = await self.get_me()
+        scheduler.start()
         temp.ME = me.id
         temp.U_NAME = me.username
         temp.B_NAME = me.first_name

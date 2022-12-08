@@ -1,6 +1,7 @@
 # Kanged From @TroJanZheX
 import ast
 import asyncio
+from datetime import datetime, timedelta
 import logging
 import math
 import re
@@ -14,6 +15,7 @@ from pyrogram.errors.exceptions.bad_request_400 import (
     WebpageMediaEmpty,
 )
 from pyrogram.types import CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup
+
 
 from database.connections_mdb import (
     active_connection,
@@ -47,6 +49,7 @@ from utils import (
     save_group_settings,
     search_gagala,
     temp,
+    scheduler,
 )
 
 logger = logging.getLogger(__name__)
@@ -67,7 +70,10 @@ async def give_filter(client, message):
 async def next_page(bot, query):
     ident, req, key, offset = query.data.split("_")
     if int(req) not in [query.from_user.id, 0]:
-        return await query.answer("⚠ ബ്രോ, മറ്റുള്ളവർ റിക്വസ്റ്റ് ചെയിത മൂവിയിൽ കുത്തി നോക്കാതെ ബ്രോന് വേണ്ടത് ബ്രോ റിക്വസ്റ്റ് ചെയ്യുക.🙏\n\n⚠ Bro, Search Your Own File, Don't Click Others Requested Files", show_alert=True)
+        return await query.answer(
+            "⚠ ബ്രോ, മറ്റുള്ളവർ റിക്വസ്റ്റ് ചെയിത മൂവിയിൽ കുത്തി നോക്കാതെ ബ്രോന് വേണ്ടത് ബ്രോ റിക്വസ്റ്റ് ചെയ്യുക.🙏\n\n⚠ Bro, Search Your Own File, Don't Click Others Requested Files",
+            show_alert=True,
+        )
     try:
         offset = int(offset)
     except:
@@ -171,13 +177,17 @@ async def next_page(bot, query):
 async def advantage_spoll_choker(bot, query):
     _, user, movie_ = query.data.split("#")
     if int(user) != 0 and query.from_user.id != int(user):
-        return await query.answer("⚠ ബ്രോ, മറ്റുള്ളവർ റിക്വസ്റ്റ് ചെയിത മൂവിയിൽ കുത്തി നോക്കാതെ ബ്രോന് വേണ്ടത് ബ്രോ റിക്വസ്റ്റ് ചെയ്യുക.🙏\n\n⚠ Bro, Search Your Own File, Don't Click Others Requested Files", show_alert=True)
+        return await query.answer(
+            "⚠ ബ്രോ, മറ്റുള്ളവർ റിക്വസ്റ്റ് ചെയിത മൂവിയിൽ കുത്തി നോക്കാതെ ബ്രോന് വേണ്ടത് ബ്രോ റിക്വസ്റ്റ് ചെയ്യുക.🙏\n\n⚠ Bro, Search Your Own File, Don't Click Others Requested Files",
+            show_alert=True,
+        )
     if movie_ == "close_spellcheck":
         return await query.message.delete()
     movies = SPELL_CHECK.get(query.message.reply_to_message.id)
     if not movies:
         return await query.answer(
-            "നിങ്ങൾ എന്റെ പഴയ സന്ദേശങ്ങളിലൊന്നാണ് ഉപയോഗിക്കുന്നത്, ദയവായി വീണ്ടും സെർച്ച് ചെയ്യുക.\n\n🤦‍♂You are using one of my old messages, please send the request again", show_alert=True
+            "നിങ്ങൾ എന്റെ പഴയ സന്ദേശങ്ങളിലൊന്നാണ് ഉപയോഗിക്കുന്നത്, ദയവായി വീണ്ടും സെർച്ച് ചെയ്യുക.\n\n🤦‍♂You are using one of my old messages, please send the request again",
+            show_alert=True,
         )
     movie = movies[(int(movie_))]
     await query.answer("Checking for Movie in database...")
@@ -433,7 +443,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     caption=f_caption,
                     protect_content=True if ident == "filep" else False,
                 )
-                await query.answer("ഇനി ജോയിൻ ആയ ഈ ബോട്ടിൽ @TGFilmRobot മതി. മൂവി ഫയൽ അവിടെ വന്നിട്ടുണ്ടാകും.\nCheck PM of the this Bot.", show_alert=True)
+                await query.answer(
+                    "ഇനി ജോയിൻ ആയ ഈ ബോട്ടിൽ @TGFilmRobot മതി. മൂവി ഫയൽ അവിടെ വന്നിട്ടുണ്ടാകും.\nCheck PM of the this Bot.",
+                    show_alert=True,
+                )
         except UserIsBlocked:
             await query.answer("Unblock the bot mahn !", show_alert=True)
         except PeerIdInvalid:
@@ -842,9 +855,10 @@ async def auto_filter(client, msg, spoll=False):
         )
     else:
         cap = f"<b>ആദ്യം ഈ ബോട്ടിൽ പോയിട്ട് ജോയിൻ ആവുക. അതിനു ശേഷം ഇവിടെ മൂവി ക്ലിക്ക് ചെയ്യുക.\nബോട്ട് 👉@TGFilmRobot👈.\nHere is what i found for your query👇👇👇👇\n #{search}</b>"
+    __msg = None
     if imdb and imdb.get("poster"):
         try:
-            await message.reply_photo(
+            __msg = await message.reply_photo(
                 photo=imdb.get("poster"),
                 caption=cap[:1024],
                 reply_markup=InlineKeyboardMarkup(btn),
@@ -852,16 +866,29 @@ async def auto_filter(client, msg, spoll=False):
         except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
             pic = imdb.get("poster")
             poster = pic.replace(".jpg", "._V1_UX360.jpg")
-            await message.reply_photo(
+            __msg = await message.reply_photo(
                 photo=poster, caption=cap[:1024], reply_markup=InlineKeyboardMarkup(btn)
             )
         except Exception as e:
             logger.exception(e)
-            await message.reply_text(cap, reply_markup=InlineKeyboardMarkup(btn))
+            __msg = await message.reply_text(
+                cap, reply_markup=InlineKeyboardMarkup(btn)
+            )
     else:
-        await message.reply_text(cap, reply_markup=InlineKeyboardMarkup(btn))
+        __msg = await message.reply_text(cap, reply_markup=InlineKeyboardMarkup(btn))
     if spoll:
         await msg.message.delete()
+    if __msg:
+        scheduler.add_job(
+            _delete,
+            "date",
+            [client, __msg],
+            run_date=datetime.now() + timedelta(seconds=600),
+        )
+
+
+async def _delete(bot, msg):
+    return await bot.delete_messages(msg.chat.id, msg.id)
 
 
 async def advantage_spell_chok(msg):

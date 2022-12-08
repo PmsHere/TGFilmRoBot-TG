@@ -16,6 +16,8 @@ from pyrogram.errors import (
     UserIsBlocked,
     UserNotParticipant,
 )
+import tzlocal
+from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from pyrogram.raw.functions.messages import GetChatInviteImporters as ______
 from pyrogram.raw.types import InputUserEmpty as _______
 from pyrogram.types import InlineKeyboardButton, Message
@@ -32,6 +34,8 @@ BTN_URL_REGEX = re.compile(
 )
 
 imdb = IMDb()
+
+scheduler = AsyncIOScheduler(timezone=str(tzlocal.get_localzone()))
 
 BANNED = {}
 SMART_OPEN = "“"
