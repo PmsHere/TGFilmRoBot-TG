@@ -763,7 +763,7 @@ async def auto_filter(client, msg, spoll=False):
             )
             if not files:
                 if settings["spell_check"]:
-                    return await advantage_spell_chok(msg)
+                    return await advantage_spell_chok(msg, client)
                 else:
                     return
         else:
@@ -883,7 +883,7 @@ async def auto_filter(client, msg, spoll=False):
             _delete,
             "date",
             [client, __msg],
-            run_date=datetime.now() + timedelta(seconds=600),
+            run_date=datetime.now() + timedelta(seconds=300),
         )
 
 
@@ -891,7 +891,7 @@ async def _delete(bot, msg):
     return await bot.delete_messages(msg.chat.id, msg.id)
 
 
-async def advantage_spell_chok(msg):
+async def advantage_spell_chok(msg, client):
     query = re.sub(
         r"\b(pl(i|e)*?(s|z+|ease|se|ese|(e+)s(e)?)|((send|snd|giv(e)?|gib)(\sme)?)|movie(s)?|new|latest|br((o|u)h?)*|^h(e|a)?(l)*(o)*|mal(ayalam)?|t(h)?amil|file|that|find|und(o)*|kit(t(i|y)?)?o(w)?|thar(u)?(o)*w?|kittum(o)*|aya(k)*(um(o)*)?|full\smovie|any(one)|with\ssubtitle(s)?)",
         "",
@@ -970,9 +970,15 @@ async def advantage_spell_chok(msg):
             )
         ]
     )
-    await msg.reply(
+    msg__ = await msg.reply(
         "I couldn't find anything related to that\nDid you mean any one of these?",
         reply_markup=InlineKeyboardMarkup(btn),
+    )
+    scheduler.add_job(
+        _delete,
+        "date",
+        [client, msg__],
+        run_date=datetime.now() + timedelta(seconds=300),
     )
 
 
@@ -988,7 +994,7 @@ async def manual_filters(client, message, text=False):
 
             if reply_text:
                 reply_text = reply_text.replace("\\n", "\n").replace("\\t", "\t")
-
+            __msg = None
             if btn is not None:
                 try:
                     if fileid == "None":
@@ -998,7 +1004,7 @@ async def manual_filters(client, message, text=False):
                             )
                         else:
                             button = eval(btn)
-                            await client.send_message(
+                            __msg = await client.send_message(
                                 group_id,
                                 reply_text,
                                 disable_web_page_preview=True,
@@ -1006,7 +1012,7 @@ async def manual_filters(client, message, text=False):
                                 reply_to_message_id=reply_id,
                             )
                     elif btn == "[]":
-                        await client.send_cached_media(
+                        __msg = await client.send_cached_media(
                             group_id,
                             fileid,
                             caption=reply_text or "",
@@ -1014,7 +1020,7 @@ async def manual_filters(client, message, text=False):
                         )
                     else:
                         button = eval(btn)
-                        await message.reply_cached_media(
+                        __msg = await message.reply_cached_media(
                             fileid,
                             caption=reply_text or "",
                             reply_markup=InlineKeyboardMarkup(button),
@@ -1023,5 +1029,12 @@ async def manual_filters(client, message, text=False):
                 except Exception as e:
                     logger.exception(e)
                 break
+            if __msg:
+                scheduler.add_job(
+                    _delete,
+                    "date",
+                    [client, __msg],
+                    run_date=datetime.now() + timedelta(seconds=300),
+                )
     else:
         return False
