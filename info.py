@@ -17,8 +17,8 @@ def is_enabled(value, default):
 SESSION = environ.get("SESSION", "Media_search")
 API_ID = environ.get('API_ID', '4534665')
 API_HASH = environ.get('API_HASH', '366f7a24d64c5d6578df57e3b5b03fa0')
-BOT_TOKEN = environ.get('BOT_TOKEN', '')
-USER_SESSION = environ.get('USER_SESSION', '')
+BOT_TOKEN = environ.get('BOT_TOKEN', '5353888647:AAGdFBWN6rtdVuT-YhdO3xOiT0Z7gRagk8c')
+USER_SESSION = environ.get('USER_SESSION', 'AQFlwpsAcyR6PDoB5o09nsoNDiIGYbJSKjmN1X3csr3RHFbPL0MCqXQwDTvt8WBX8LQtpXinLSsY0Lgx3ot0Q5OBnAK3GttIP-0uiIEvTq05ka1j1_vmxkaMT1kRBRF6r7M7z7lwCD9nVJXUYyPHRdAFjZx4G1wnMuKBC8eC9ez6Ki30I2t4YiuqvihRAeNzrroDDnAQtzKvB80BMezS1g-dUKDkVdwwkqIXjfcCLwQraUZhJd1ewz-ssUWEYPGEfZPX-5ZBFMPwEmYAve_n309fzx86Uz87pPea-F1vKmuhoZPef6VddG8Nh2uAWaKogmivoCeGWwfwRmyoIDPMc579bhcP-AAAAAFYGxVlAA')
 # Bot settings
 CACHE_TIME = int(environ.get("CACHE_TIME", 300))
 USE_CAPTION_FILTER = bool(environ.get("USE_CAPTION_FILTER", False))
@@ -51,7 +51,7 @@ AUTH_CHANNEL = (
 AUTH_GROUPS = [int(ch) for ch in auth_grp.split()] if auth_grp else None
 
 # MongoDB information
-DATABASE_URI = environ.get("DATABASE_URI", "")
+DATABASE_URI = environ.get("DATABASE_URI", "mongodb+srv://apollo:pmshere@cluster0.0gkxnrn.mongodb.net/?retryWrites=true&w=majority")
 DATABASE_NAME = environ.get("DATABASE_NAME", "Cluster0")
 COLLECTION_NAME = environ.get("COLLECTION_NAME", "Telegram_files")
 
