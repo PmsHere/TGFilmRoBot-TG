@@ -25,7 +25,7 @@ USE_CAPTION_FILTER = bool(environ.get("USE_CAPTION_FILTER", False))
 PICS = (
     environ.get(
         "PICS",
-        "https://te.legra.ph/file/9360577ec15069961e9e9.jpg https://te.legra.ph/file/2b8c4abd33ab417ddfbd1.jpg https://te.legra.ph/file/04b10b450de3e8daea891.jpg https://te.legra.ph/file/27c3b2fb4f953725d1633.jpg https://te.legra.ph/file/29e2aa262204d73853372.jpg",
+        "https://graph.org/file/332ccd03b44770a305559.jpg",
     )
 ).split()
 
