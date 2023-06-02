@@ -496,17 +496,20 @@ async def cb_handler(client: Client, query: CallbackQuery):
         buttons = [
             [
                 InlineKeyboardButton(
-                    "➕ Add Me To Your Groups ➕",
-                    url=f"http://t.me/{temp.U_NAME}?startgroup=true",
+                    "📮 ᴄᴏᴍᴘʟᴀɪɴᴛꜱ/ ꜰᴇᴇᴅʙᴀᴄᴋ" ,
+                    url="http://t.me/PmsHereRobot",
                 )
             ],
             [
-                InlineKeyboardButton("🔍 Search", switch_inline_query_current_chat=""),
-                InlineKeyboardButton("⭐ Channel", url="https://t.me/MalluTorentzTG"),
+                InlineKeyboardButton("ᴍᴇɴᴜ ⚙", callback_data="help"),
+                InlineKeyboardButton("🪄 ᴍᴀɢɪᴄ", url=f"http://t.me/{temp.U_NAME}?startgroup=true"),
             ],
             [
-                InlineKeyboardButton("🧰 Help", callback_data="help"),
-                InlineKeyboardButton("🔖 About", callback_data="about"),
+                InlineKeyboardButton("ᴏᴡɴᴇʀ 🧠", url="http://t.me/chiyaan_dhruv"),
+                InlineKeyboardButton("📝 ʀᴇᴀᴅ ᴛʜɪꜱ", callback_data="about"),
+            ],
+            [
+                InlineKeyboardButton("❤️‍🔥 ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴍᴀʟʟᴜ ᴛᴏʀᴇɴᴛᴢ", url="http://t.me/Mallutorentztg"),
             ],
         ]
         reply_markup = InlineKeyboardMarkup(buttons)
@@ -529,8 +532,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 InlineKeyboardButton("Extra Mods", callback_data="extra"),
             ],
             [
-                InlineKeyboardButton("🏠 Home", callback_data="start"),
-                InlineKeyboardButton("🔮 Status", callback_data="stats"),
+                InlineKeyboardButton("🏠 ʜᴏᴍᴇ", callback_data="start"),
+                InlineKeyboardButton("💥 ꜱᴛᴀᴛꜱ", callback_data="stats"),
             ],
         ]
         reply_markup = InlineKeyboardMarkup(buttons)
@@ -542,12 +545,11 @@ async def cb_handler(client: Client, query: CallbackQuery):
     elif query.data == "about":
         buttons = [
             [
-                InlineKeyboardButton("⭐ Channel", url="https://t.me/MalluTorentzTG"),
-                InlineKeyboardButton("♥️ More", callback_data="source"),
+                InlineKeyboardButton("ℹ️ ᴛᴇʀᴍꜱ & ᴄᴏɴᴅɪᴛɪᴏɴꜱ", callback_data="source"),
             ],
             [
-                InlineKeyboardButton("🏠 Home", callback_data="start"),
-                InlineKeyboardButton("🔐 Close", callback_data="close_data"),
+                InlineKeyboardButton("🏠 ʜᴏᴍᴇ", callback_data="start"),
+                InlineKeyboardButton("🔐 ᴄʟᴏꜱᴇ", callback_data="close_data"),
             ],
         ]
         reply_markup = InlineKeyboardMarkup(buttons)
