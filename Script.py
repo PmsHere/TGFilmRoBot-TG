@@ -1,21 +1,31 @@
 class script(object):
-    START_TXT = """𝙷𝙴𝙻𝙾 {},
-𝙼𝚈 𝙽𝙰𝙼𝙴 𝙸𝚂 <a href=https://t.me/{}>{}</a>, 𝙸 𝙲𝙰𝙽 𝙿𝚁𝙾𝚅𝙸𝙳𝙴 𝙼𝙾𝚅𝙸𝙴𝚂, 𝙹𝚄𝚂𝚃 𝙰𝙳𝙳 𝙼𝙴 𝚃𝙾 𝚈𝙾𝚄𝚁 𝙶𝚁𝙾𝚄𝙿 𝙰𝙽𝙳 𝙴𝙽𝙹𝙾𝚈 😍"""
-    HELP_TXT = """𝙷𝙴𝚈 {}
-𝙷𝙴𝚁𝙴 𝙸𝚂 𝚃𝙷𝙴 𝙷𝙴𝙻𝙿 𝙵𝙾𝚁 𝙼𝚈 𝙲𝙾𝙼𝙼𝙰𝙽𝙳𝚂."""
-    ABOUT_TXT = """✯ 𝙼𝚈 𝙽𝙰𝙼𝙴: {}
-✯ 𝙲𝚁𝙴𝙰𝚃𝙾𝚁: <a href=https://t.me/Chiyaan_Dhruv>Ｄｒ⚕️ ᴀᴅɪᴛʏᴀ</a>
-✯ 𝙻𝙸𝙱𝚁𝙰𝚁𝚈: 𝙿𝚈𝚁𝙾𝙶𝚁𝙰𝙼
-✯ 𝙻𝙰𝙽𝙶𝚄𝙰𝙶𝙴: 𝙿𝚈𝚃𝙷𝙾𝙽 𝟹
-✯ 𝙳𝙰𝚃𝙰 𝙱𝙰𝚂𝙴: 𝙼𝙾𝙽𝙶𝙾 𝙳𝙱
-✯ 𝙱𝙾𝚃 𝚂𝙴𝚁𝚅𝙴𝚁: Dɪɢɪᴛᴀʟ ᴏᴄᴇᴀɴ
-✯ 𝙱𝚄𝙸𝙻𝙳 𝚂𝚃𝙰𝚃𝚄𝚂: v1.0.1 [ 𝙱𝙴𝚃𝙰 ]"""
-    SOURCE_TXT = """<b>NOTE:</b>
-- Eva Maria is a open source project. 
-- Source - https://github.com/EvamariaTG/EvaMaria  
+    START_TXT = """<b>Heya {} 👋 I'm <a href=https://t.me/{}>{}</a> !
 
-<b>DEVS:</b>
-- <a href=https://t.me/TeamEvamaria>Team Eva Maria</a>"""
+⚠️📌 ᴡᴇ ᴡɪʟʟ ᴜᴘʟᴏᴀᴅ ᴀʟʟ ᴛᴏʀᴇɴᴛ ꜰɪʟᴇꜱ ꜰɪʀꜱᴛ ɪɴ ᴛᴇʟᴇɢʀᴀᴍ, torrentൽ വരുന്ന എല്ലാ ഫയലും ആദ്യം തന്നെ ഞ്ങ്ങൾ upload ചെയ്യുന്നതാണ്, हम हर टोरेंट फाइल को पहले अपलोड करते हैं
+
+⚠️📌 ᴡᴇ ᴡᴏɴ'ᴛ ᴘʀᴏᴠɪᴅᴇ ʏᴇꜱꜱᴍᴀᴀ ꜱᴇʀɪᴇꜱ ᴀɴᴅ ᴛʜɪꜱ ʙᴏᴛ ᴡᴏɴ'ᴛ ᴘʀᴏᴍᴏᴛᴇ ᴘᴏʀɴᴏɢʀᴀᴘʜɪᴄ ᴄᴏɴᴛᴇɴᴛꜱ, ഞങ്ങൾ yessma സീരീസും അശ്ലീല വീഡിയോകളും promote ചെയ്യുന്നത് അല്ല, हम येस्मा सीरीज प्रदान नहीं करेंगे और यह बॉट अश्लील सामग्री को बढ़ावा नहीं दे सकता है
+
+@mallutorentgroup 👈 Mᴏᴠɪᴇ RᴇQᴜᴇꜱᴛ Hᴇʀᴇ , മൂവി ഇവിടെ ചോദിക്കുക, यहां फिल्म के लिए पूछें..!!!
+
+<a href="telegram.me/mallutorentztg">Powered by Mallu Torent</a>™</b>"""
+    HELP_TXT = """<b>{} Use below buttons for further navigation 💬</b>"""
+    ABOUT_TXT = """<b>⚠️  Spelling ശരിയായി ഗൂഗിൾ നോക്കി അടിച്ചാൽ മാത്രമേ result കിട്ടുക ഒള്ളൂ..!!!
+‼️  ശരിയായ സ്പെല്ലിങ് അടിച്ചിട്ടും  മൂവി വന്നില്ലെങ്കിൽ  DVD OTT റിലീസ് ആയിട്ടുണ്ടാകില്ല...
+       ➖➖➖➖➖➖➖➖➖➖➖➖➖
+⚠️  Type correct spelling of the movie from google you're searching for..!!!
+‼️  If the movie doesn't come out despite hitting the correct spelling, the DVD OTT release might not have happened...
+
+🔅 Contact @Chiyaan_Dhruv for Paid Join Acceptor Bot at low cost.</i></b>"""
+    SOURCE_TXT = """<b>Terms and conditions:
+
+- Only your first name, last name (if any) and username (if any) is stored for a convenient communication!
+- Messages between Bot and you is only infront of your eyes and there is no backuse of it.
+- Watch your group, if someone is spamming your group, you can use the report feature of your Telegram Client.
+- Do not spam commands, buttons, or anything in bot PM.
+
+NOTE: Terms and Conditions might change anytime
+
+© @MalluTorentzTG</b>"""
     MANUELFILTER_TXT = """Help: <b>Filters</b>
 
 - Filter is the feature were users can set automated replies for a particular keyword and EvaMaria will respond whenever a keyword is found the message
