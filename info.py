@@ -62,7 +62,7 @@ SUPPORT_CHAT = environ.get("SUPPORT_CHAT", "MalluTorentzTG")
 P_TTI_SHOW_OFF = is_enabled((environ.get("P_TTI_SHOW_OFF", "True")), True)
 IMDB = is_enabled((environ.get("IMDB", "False")), False)
 SINGLE_BUTTON = is_enabled((environ.get("SINGLE_BUTTON", "True")), True)
-CUSTOM_FILE_CAPTION = environ.get("CUSTOM_FILE_CAPTION", '<pre>{file_name}</pre>\n\n<b>🔗𝗖𝗛𝗔𝗡𝗡𝗘𝗟 𝗟𝗜𝗡𝗞☞\n\nhttps://t.me/+WdzjOMj3tVY0YjJk\nhttps://t.me/+WdzjOMj3tVY0YjJk\nhttps://t.me/+WdzjOMj3tVY0YjJk</b>')
+CUSTOM_FILE_CAPTION = environ.get("CUSTOM_FILE_CAPTION", '<pre>{file_name}</pre>\n\n<b>╔══ ᴊᴏɪɴ ᴡɪᴛʜ ᴜs ═══╗\n♻️ 𝙅𝙊𝙄𝙉 :- @MalluTorentzTG\n♻️ 𝙅𝙊𝙄𝙉 :- @MalluTorentGroup\n♻️ 𝙅𝙊𝙄𝙉 :- @MT_LinkTG\n╚══ ᴊᴏɪɴ ᴡɪᴛʜ ᴜs ═══╝</b>')
 BATCH_FILE_CAPTION = environ.get("BATCH_FILE_CAPTION", CUSTOM_FILE_CAPTION)
 IMDB_TEMPLATE = environ.get(
     "IMDB_TEMPLATE",
