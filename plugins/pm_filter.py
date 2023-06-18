@@ -64,6 +64,7 @@ INVITE = {}
 
 
 
+
 @Client.on_message(
     filters.text & filters.private & filters.incoming & filters.user(AUTH_USERS)
     if AUTH_USERS
@@ -84,7 +85,6 @@ async def filter(client, message):
     if message.text.startswith("/"):
         return
     if fsub_id:
-
         if not await is_subscribed(client, message):
             await client.send_message(
                 chat_id=message.from_user.id,
@@ -107,7 +107,9 @@ async def filter(client, message):
     if 2 < len(message.text) < 100:
         btn = []
         search = message.text
-        files = await get_filter_results(query=search)
+        files, offset, total_results = await get_search_results(
+            search.lower(), offset=0, filter=True
+        )
         btn.append(
             [
                 InlineKeyboardButton(
@@ -144,9 +146,9 @@ async def filter(client, message):
             buttons.append(
                 [InlineKeyboardButton(text="📃 Pages 1/1", callback_data="pages")]
             )
-            #   buttons.append(
-            #   [InlineKeyboardButton("✨️𝐒𝐞𝐫𝐢𝐞𝐬 𝐒𝐭𝐮𝐝𝐢𝐨✨️", url="https://t.me/Series_Studio")]
-            #   )
+            # buttons.append(
+            #     [InlineKeyboardButton("✨️𝐒𝐞𝐫𝐢𝐞𝐬 𝐒𝐭𝐮𝐝𝐢𝐨✨️", url="https://t.me/Series_Studio")]
+            # )
             poster = None
             if API_KEY:
                 poster = await get_poster(search)
@@ -177,8 +179,8 @@ async def filter(client, message):
                 )
             ]
         )
-        #     buttons.append(
-        # [InlineKeyboardButton("✨️𝐒𝐞𝐫𝐢𝐞𝐬 𝐒𝐭𝐮𝐝𝐢𝐨✨️", url="https://t.me/Series_Studio")]
+        # buttons.append(
+        #     [InlineKeyboardButton("✨️𝐒𝐞𝐫𝐢𝐞𝐬 𝐒𝐭𝐮𝐝𝐢𝐨✨️", url="https://t.me/Series_Studio")]
         # )
         poster = None
         if API_KEY:
@@ -195,11 +197,7 @@ async def filter(client, message):
                 caption=f"<b>Total Files:</b><code>{len(files)}</code>\n<b>Movie Name:</b> <code>{search}</code>\n\n<b>© {(await client.get_me()).first_name}</b>",
                 reply_markup=InlineKeyboardMarkup(buttons),
             )
-
-    if not await present_in_userbase(message.from_user.id):
-        await add_to_userbase(message.from_user.id)
-
-
+        return
 
 
 
