@@ -61,19 +61,18 @@ logger.setLevel(logging.ERROR)
 BUTTONS = {}
 SPELL_CHECK = {}
 
-#result = Client.export_chat_invite_link(chat_id=AUTH_CHANNEL )
 
 async def getInviteLink(bot: Client):
     fsub_id = await force_sub_db.get_fsub()
     jr = await force_sub_db.getJoin()
     invite_link = temp.INVITE_LINK.get(f"{fsub_id}_{jr}")
     if not invite_link:
-        invite_link = await bot.create_chat_invite_link(
+        invite_link_obj = await bot.create_chat_invite_link(
             chat_id=int(fsub_id), creates_join_request=jr
         )
+        invite_link = str(invite_link_obj)
         temp.INVITE_LINK[f"{fsub_id}_{jr}"] = invite_link
-    return invite_link
-
+    return invite_link_obj
 
 @Client.on_message(filters.group & filters.text & filters.incoming)
 async def give_filter(client, message):
@@ -831,7 +830,7 @@ async def auto_filter(client, msg, spoll=False):
             ]
             for file in files
         ]
-    #encoded_invite_link = urllib.parse.quote(invite_link)
+    encoded_invite_link = urllib.parse.quote(invite_link)
     btn.insert(
         0,
         [
