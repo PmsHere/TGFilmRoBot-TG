@@ -62,17 +62,7 @@ BUTTONS = {}
 SPELL_CHECK = {}
 INVITE = {}
 
-"""async def getInviteLink(bot: Client):
-    fsub_id = await force_sub_db.get_fsub()
-    jr = await force_sub_db.getJoin()
-    invite_link = temp.INVITE_LINK.get(f"{fsub_id}_{jr}")
-    if not invite_link:
-        invite_link_obj = await bot.create_chat_invite_link(
-            chat_id=int(fsub_id), creates_join_request=jr
-        )
-        invite_link = str(invite_link_obj)
-        temp.INVITE_LINK[f"{fsub_id}_{jr}"] = invite_link
-    return invite_link_obj"""
+
 
 @Client.on_message(filters.group & filters.text & filters.incoming)
 async def give_filter(client, message):
@@ -136,13 +126,25 @@ async def next_page(bot, query):
             for file in files
         ]
         
-    btn.insert(0,
+    fsub_id = await force_sub_db.get_fsub()
+    jr = await force_sub_db.getJoin()
+    invite_link = INVITE.get(fsub_id)
+    if not invite_link:
+        invite_link_obj = await bot.create_chat_invite_link(
+            chat_id=int(fsub_id), creates_join_request=jr
+        )
+        invite_link = invite_link_obj.invite_link
+        INVITE[fsub_id] = invite_link
+
+    btn.insert(
+        0,
         [
-              InlineKeyboardButton(
-                        "💢 𝗝𝗼𝗶𝗻 𝗢𝘂𝗿 𝗠𝗮𝗶𝗻 𝗰𝗵𝗮𝗻𝗻𝗲𝗹 💢", url=invite_link.invite_link
-                    )
-         ],
+            InlineKeyboardButton(
+                "💢 𝗝𝗼𝗶𝗻 𝗢𝘂𝗿 𝗠𝗮𝗶𝗻 𝗰𝗵𝗮𝗻𝗻𝗲𝗹 💢",
+                url=invite_link
             )
+        ]
+    )
         
     if 0 < offset <= 10:
         off_set = 0
