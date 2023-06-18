@@ -64,6 +64,148 @@ INVITE = {}
 
 
 
+@Client.on_message(
+    filters.text & filters.private & filters.incoming & filters.user(AUTH_USERS)
+    if AUTH_USERS
+    else filters.text & filters.private & filters.incoming
+)
+async def filter(client, message):
+    fsub_id = await force_sub_db.get_fsub()
+    jr = await force_sub_db.getJoin()
+    invite_link = INVITE.get(f"{fsub_id}_{jr}")
+
+    if not invite_link:
+        invite_link = await client.create_chat_invite_link(
+            chat_id=int(fsub_id), creates_join_request=jr
+        )
+        INVITE[f"{fsub_id}_{jr}"] = invite_link
+    if not await present_in_userbase(message.from_user.id):
+        await add_to_userbase(message.from_user.id)
+    if message.text.startswith("/"):
+        return
+    if fsub_id:
+
+        if not await is_subscribed(client, message):
+            await client.send_message(
+                chat_id=message.from_user.id,
+                text=f"**♦️ READ THIS INSTRUCTION ♦️**\n\n__🗣 നിങ്ങൾ ചോദിക്കുന്ന സിനിമകൾ നിങ്ങൾക്ക് ലഭിക്കണം എന്നുണ്ടെങ്കിൽ നിങ്ങൾ താഴെ കൊടുത്തിട്ടുള്ള ചാനലിൽ ജോയിൻ ചെയ്യണം. ജോയിൻ ചെയ്ത ശേഷം വീണ്ടും ഗ്രൂപ്പിൽ പോയി ആ ബട്ടനിൽ അമർത്തിയാൽ നിങ്ങൾക്ക് ഞാൻ ആ സിനിമ പ്രൈവറ്റ് ആയി അയച്ചു തരുന്നതാണ്..😍\n\n🗣 In Order To Get The Movie Requested By You in Our Groups, You Will Have To Join Our Official Channel First. After That, Try Accessing That Movie Again From Our Group. I'll Send You That Movie Privately 🙈__\n\n**👇 JOIN THIS CHANNEL & TRY 👇\n\n[{invite_link.invite_link}]**",
+                reply_markup=InlineKeyboardMarkup(
+                    [
+                        [
+                            InlineKeyboardButton(
+                                "💢𝙹𝚘𝚒𝚗 𝙼𝚢 𝙲𝚑𝚊𝚗𝚗𝚎𝚕💢", url=invite_link.invite_link
+                            )
+                        ]
+                    ]
+                ),
+                parse_mode=enums.ParseMode.MARKDOWN,
+                disable_web_page_preview=True,
+            )
+            return
+    if re.findall("((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)", message.text):
+        return
+    if 2 < len(message.text) < 100:
+        btn = []
+        search = message.text
+        files = await get_filter_results(query=search)
+        btn.append(
+            [
+                InlineKeyboardButton(
+                    "💢 𝗝𝗼𝗶𝗻 𝗢𝘂𝗿 𝗠𝗮𝗶𝗻 𝗰𝗵𝗮𝗻𝗻𝗲𝗹 💢", url=invite_link.invite_link
+                )
+            ]
+        )
+        if files:
+            for file in files:
+                file_id = file.file_id
+                filename = f"[{get_size(file.file_size)}] {file.file_name}"
+                btn.append(
+                    [
+                        InlineKeyboardButton(
+                            text=f"{filename}", callback_data=f"subinps#{file_id}"
+                        )
+                    ]
+                )
+        else:
+            await client.send_sticker(
+                chat_id=message.from_user.id, sticker="CAADBQADMwIAAtbcmFelnLaGAZhgBwI"
+            )
+            return
+
+        if not btn:
+            return
+
+        if len(btn) > 10:
+            btns = list(split_list(btn, 10))
+            keyword = f"{message.chat.id}-{message.id}"
+            BUTTONS[keyword] = {"total": len(btns), "buttons": btns}
+        else:
+            buttons = btn
+            buttons.append(
+                [InlineKeyboardButton(text="📃 Pages 1/1", callback_data="pages")]
+            )
+            #   buttons.append(
+            #   [InlineKeyboardButton("✨️𝐒𝐞𝐫𝐢𝐞𝐬 𝐒𝐭𝐮𝐝𝐢𝐨✨️", url="https://t.me/Series_Studio")]
+            #   )
+            poster = None
+            if API_KEY:
+                poster = await get_poster(search)
+            if poster:
+                await message.reply_photo(
+                    photo=poster,
+                    caption=f"<b>Total Files:</b><code>{len(files)}</code>\n<b>Movie Name:</b> <code>{search}</code>\n\n<b>© {(await client.get_me()).first_name}</b>",
+                    reply_markup=InlineKeyboardMarkup(buttons),
+                )
+            else:
+                await message.reply_photo(
+                    photo=FILTER_PIC,
+                    caption=f"<b>Total Files:</b><code>{len(files)}</code>\n<b>Movie Name:</b> <code>{search}</code>\n\n<b>© {(await client.get_me()).first_name}</b>",
+                    reply_markup=InlineKeyboardMarkup(buttons),
+                )
+            return
+
+        data = BUTTONS[keyword]
+        buttons = data["buttons"][0].copy()
+
+        buttons.append(
+            [InlineKeyboardButton(text="NEXT ⏩", callback_data=f"next_0_{keyword}")]
+        )
+        buttons.append(
+            [
+                InlineKeyboardButton(
+                    text=f"📃 Pages 1/{data['total']}", callback_data="pages"
+                )
+            ]
+        )
+        #     buttons.append(
+        # [InlineKeyboardButton("✨️𝐒𝐞𝐫𝐢𝐞𝐬 𝐒𝐭𝐮𝐝𝐢𝐨✨️", url="https://t.me/Series_Studio")]
+        # )
+        poster = None
+        if API_KEY:
+            poster = await get_poster(search)
+        if poster:
+            await message.reply_photo(
+                photo=poster,
+                caption=f"<b>Total Files:</b><code>{len(files)}</code>\n<b>Movie Name:</b> <code>{search}</code>\n\n<b>© {(await client.get_me()).first_name}</b>",
+                reply_markup=InlineKeyboardMarkup(buttons),
+            )
+        else:
+            await message.reply_photo(
+                photo=FILTER_PIC,
+                caption=f"<b>Total Files:</b><code>{len(files)}</code>\n<b>Movie Name:</b> <code>{search}</code>\n\n<b>© {(await client.get_me()).first_name}</b>",
+                reply_markup=InlineKeyboardMarkup(buttons),
+            )
+
+    if not await present_in_userbase(message.from_user.id):
+        await add_to_userbase(message.from_user.id)
+
+
+
+
+
+
+
+
 @Client.on_message(filters.group & filters.text & filters.incoming)
 async def give_filter(client, message):
     k = await manual_filters(client, message)
