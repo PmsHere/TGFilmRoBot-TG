@@ -58,7 +58,7 @@ logger.setLevel(logging.ERROR)
 BUTTONS = {}
 SPELL_CHECK = {}
 
-result = Client.create_chat_invite_link(AUTH_CHANNEL)
+result = Client.get_chat(chat_id=AUTH_CHANNEL)
 
 
 @Client.on_message(filters.group & filters.text & filters.incoming)
