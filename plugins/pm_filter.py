@@ -62,7 +62,7 @@ BUTTONS = {}
 SPELL_CHECK = {}
 
 
-async def getInviteLink(bot: Client):
+"""async def getInviteLink(bot: Client):
     fsub_id = await force_sub_db.get_fsub()
     jr = await force_sub_db.getJoin()
     invite_link = temp.INVITE_LINK.get(f"{fsub_id}_{jr}")
@@ -72,7 +72,7 @@ async def getInviteLink(bot: Client):
         )
         invite_link = str(invite_link_obj)
         temp.INVITE_LINK[f"{fsub_id}_{jr}"] = invite_link
-    return invite_link_obj
+    return invite_link_obj"""
 
 @Client.on_message(filters.group & filters.text & filters.incoming)
 async def give_filter(client, message):
@@ -781,8 +781,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
 async def auto_filter(client, msg, spoll=False):
     if not spoll:
-        invite_link_obj = await getInviteLink(client)
-        invite_link = str(invite_link_obj)
+        #invite_link_obj = await getInviteLink(client)
+        #invite_link = str(invite_link_obj)
         message = msg
         settings = await get_settings(message.chat.id)
         if message.text.startswith("/"):
@@ -805,6 +805,17 @@ async def auto_filter(client, msg, spoll=False):
         settings = await get_settings(msg.message.chat.id)
         message = msg.message.reply_to_message  # msg will be callback query
         search, files, offset, total_results = spoll
+
+    fsub_id = await force_sub_db.get_fsub()
+    jr = await force_sub_db.getJoin()
+    invite_link = INVITE.get(f"{fsub_id}_{jr}")
+
+    if not invite_link:
+        invite_link_obj = await client.create_chat_invite_link(
+            chat_id=int(fsub_id), creates_join_request=jr
+        )
+        invite_link = str(invite_link_obj)
+        INVITE[f"{fsub_id}_{jr}"] = invite_link
     pre = "filep" if settings["file_secure"] else "file"
     if settings["button"]:
         btn = [
@@ -830,13 +841,13 @@ async def auto_filter(client, msg, spoll=False):
             ]
             for file in files
         ]
-    encoded_invite_link = urllib.parse.quote(invite_link)
+   #encoded_invite_link = urllib.parse.quote(invite_link)
     btn.insert(
         0,
         [
             InlineKeyboardButton(
                 "💢 𝗝𝗼𝗶𝗻 𝗢𝘂𝗿 𝗠𝗮𝗶𝗻 𝗰𝗵𝗮𝗻𝗻𝗲𝗹 💢",
-                url=encoded_invite_link
+                url=invite_link.invite_link
             )
         ],
                                                          )
