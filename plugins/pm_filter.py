@@ -60,7 +60,7 @@ logger.setLevel(logging.ERROR)
 
 BUTTONS = {}
 SPELL_CHECK = {}
-
+INVITE = {}
 
 """async def getInviteLink(bot: Client):
     fsub_id = await force_sub_db.get_fsub()
@@ -84,12 +84,6 @@ async def give_filter(client, message):
 @Client.on_callback_query(filters.regex(r"^next"))
 async def next_page(bot, query):
     ident, req, key, offset = query.data.split("_")
-    if AUTH_CHANNEL and not await is_subscribed(client, message):
-        try:
-            invite_link = await getInviteLink(client)
-        except ChatAdminRequired:
-            logger.error("Make sure Bot is admin in Forcesub channel")
-            
     if int(req) not in [query.from_user.id, 0]:
         return await query.answer(
             "⚠ ബ്രോ, മറ്റുള്ളവർ റിക്വസ്റ്റ് ചെയിത മൂവിയിൽ കുത്തി നോക്കാതെ ബ്രോന് വേണ്ടത് ബ്രോ റിക്വസ്റ്റ് ചെയ്യുക.🙏\n\n⚠ Bro, Search Your Own File, Don't Click Others Requested Files",
@@ -145,7 +139,7 @@ async def next_page(bot, query):
     btn.insert(0,
         [
               InlineKeyboardButton(
-                        "💢 𝗝𝗼𝗶𝗻 𝗢𝘂𝗿 𝗠𝗮𝗶𝗻 𝗰𝗵𝗮𝗻𝗻𝗲𝗹 💢", url=invite_link
+                        "💢 𝗝𝗼𝗶𝗻 𝗢𝘂𝗿 𝗠𝗮𝗶𝗻 𝗰𝗵𝗮𝗻𝗻𝗲𝗹 💢", url=invite_link.invite_link
                     )
          ],
             )
