@@ -7,7 +7,7 @@ import math
 import re
 
 import urllib.parse
-
+from database.users_chats_db import add_to_userbase, present_in_userbase
 from database.fsub import force_sub_db
 import pyrogram
 from pyrogram import Client, enums, filters
