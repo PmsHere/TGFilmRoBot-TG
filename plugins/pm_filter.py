@@ -48,6 +48,7 @@ from utils import (
     get_poster,
     get_settings,
     get_size,
+    split_list,
     is_subscribed,
     save_group_settings,
     search_gagala,
