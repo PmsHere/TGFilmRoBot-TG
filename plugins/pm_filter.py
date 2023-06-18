@@ -799,7 +799,6 @@ async def auto_filter(client, msg, spoll=False):
         settings = await get_settings(msg.message.chat.id)
         message = msg.message.reply_to_message  # msg will be callback query
         search, files, offset, total_results = spoll
-
     fsub_id = await force_sub_db.get_fsub()
     jr = await force_sub_db.getJoin()
     invite_link = INVITE.get(f"{fsub_id}_{jr}")
@@ -810,6 +809,7 @@ async def auto_filter(client, msg, spoll=False):
         )
         invite_link = str(invite_link_obj)
         INVITE[f"{fsub_id}_{jr}"] = invite_link
+ 
     pre = "filep" if settings["file_secure"] else "file"
     if settings["button"]:
         btn = [
@@ -841,7 +841,7 @@ async def auto_filter(client, msg, spoll=False):
         [
             InlineKeyboardButton(
                 "💢 𝗝𝗼𝗶𝗻 𝗢𝘂𝗿 𝗠𝗮𝗶𝗻 𝗰𝗵𝗮𝗻𝗻𝗲𝗹 💢",
-                url=invite_link.invite_link
+                url=invite_link
             )
         ],
                                                          )
