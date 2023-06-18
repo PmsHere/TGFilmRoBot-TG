@@ -799,14 +799,15 @@ async def auto_filter(client, msg, spoll=False):
         settings = await get_settings(msg.message.chat.id)
         message = msg.message.reply_to_message  # msg will be callback query
         search, files, offset, total_results = spoll
+   
     fsub_id = await force_sub_db.get_fsub()
     jr = await force_sub_db.getJoin()
     invite_link = INVITE.get(fsub_id)
 
-if not invite_link:
-    invite_link_obj = await client.create_chat_invite_link(chat_id=int(fsub_id), creates_join_request=jr)
-    invite_link = invite_link_obj.invite_link
-    INVITE[fsub_id] = invite_link
+    if not invite_link:
+        invite_link_obj = await client.create_chat_invite_link(chat_id=int(fsub_id), creates_join_request=jr)
+        invite_link = invite_link_obj.invite_link
+        INVITE[fsub_id] = invite_link
     
     pre = "filep" if settings["file_secure"] else "file"
     if settings["button"]:
