@@ -65,10 +65,6 @@ SPELL_CHECK = {}
 
 @Client.on_message(filters.group & filters.text & filters.incoming)
 async def give_filter(client, message):
-    if AUTH_CHANNEL and not await is_subscribed(client, query.message):
-        try:
-            invite_link = await getInviteLink(client)
-            
     k = await manual_filters(client, message)
     if k == False:
         await auto_filter(client, message)
@@ -77,6 +73,12 @@ async def give_filter(client, message):
 @Client.on_callback_query(filters.regex(r"^next"))
 async def next_page(bot, query):
     ident, req, key, offset = query.data.split("_")
+    if AUTH_CHANNEL and not await is_subscribed(client, message):
+        try:
+            invite_link = await getInviteLink(client)
+        except ChatAdminRequired:
+            logger.error("Make sure Bot is admin in Forcesub channel")
+            
     if int(req) not in [query.from_user.id, 0]:
         return await query.answer(
             "⚠ ബ്രോ, മറ്റുള്ളവർ റിക്വസ്റ്റ് ചെയിത മൂവിയിൽ കുത്തി നോക്കാതെ ബ്രോന് വേണ്ടത് ബ്രോ റിക്വസ്റ്റ് ചെയ്യുക.🙏\n\n⚠ Bro, Search Your Own File, Don't Click Others Requested Files",
