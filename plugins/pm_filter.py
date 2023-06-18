@@ -831,13 +831,13 @@ async def auto_filter(client, msg, spoll=False):
             ]
             for file in files
         ]
-    encoded_invite_link = urllib.parse.quote(invite_link)
+    #encoded_invite_link = urllib.parse.quote(invite_link)
     btn.insert(
         0,
         [
             InlineKeyboardButton(
                 "💢 𝗝𝗼𝗶𝗻 𝗢𝘂𝗿 𝗠𝗮𝗶𝗻 𝗰𝗵𝗮𝗻𝗻𝗲𝗹 💢",
-                url=encoded_invite_link,
+                url=invite_link
             )
         ],
                                                          )
