@@ -60,6 +60,13 @@ SPELL_CHECK = {}
 
 #result = Client.export_chat_invite_link(chat_id=AUTH_CHANNEL)
 
+async def getInviteLink(client):
+    channel_id = AUTH_CHANNEL
+    invite_link = await client.export_chat_invite_link(chat_id=channel_id)
+    return invite_link
+
+
+
 
 @Client.on_message(filters.group & filters.text & filters.incoming)
 async def give_filter(client, message):
@@ -122,19 +129,22 @@ async def next_page(bot, query):
             ]
             for file in files
         ]
-   if AUTH_CHANNEL and not await is_subscribed(client, message):
-       try:
-          invite_link = await getInviteLink(client)
-       except ChatAdminRequired:
+        
+    if AUTH_CHANNEL and not await is_subscribed(client, query.message):
+        try:
+            invite_link = await getInviteLink(client)
+            btn.insert(
+                0,
+                [
+                    InlineKeyboardButton(
+                        "💢 𝗝𝗼𝗶𝗻 𝗢𝘂𝗿 𝗠𝗮𝗶𝗻 𝗰𝗵𝗮𝗻𝗻𝗲𝗹 💢", url=invite_link
+                    )
+                ],
+            )
+        except ChatAdminRequired:
             logger.error("Make sure Bot is admin in Forcesub channel")
             return
-    btn.insert(0, 
-        [
-                InlineKeyboardButton(
-                    "💢 𝗝𝗼𝗶𝗻 𝗢𝘂𝗿 𝗠𝗮𝗶𝗻 𝗰𝗵𝗮𝗻𝗻𝗲𝗹 💢",url="t.me/{AUTH_CHANNEL}"
-                )
-        ]
-)
+            
     if 0 < offset <= 10:
         off_set = 0
     elif offset == 0:
