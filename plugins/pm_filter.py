@@ -775,7 +775,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
 async def auto_filter(client, msg, spoll=False):
     if not spoll:
-        #invite_link = await getInviteLink(client)
+        invite_link_obj = await getInviteLink(client)
+        invite_link = str(invite_link_obj)
         message = msg
         settings = await get_settings(message.chat.id)
         if message.text.startswith("/"):
@@ -826,7 +827,7 @@ async def auto_filter(client, msg, spoll=False):
     btn.insert(0,
         [
               InlineKeyboardButton(
-                        "💢 𝗝𝗼𝗶𝗻 𝗢𝘂𝗿 𝗠𝗮𝗶𝗻 𝗰𝗵𝗮𝗻𝗻𝗲𝗹 💢", url = invite_link_obj
+                        "💢 𝗝𝗼𝗶𝗻 𝗢𝘂𝗿 𝗠𝗮𝗶𝗻 𝗰𝗵𝗮𝗻𝗻𝗲𝗹 💢", url = invite_link
 
                     )
          ],
