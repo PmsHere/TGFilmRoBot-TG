@@ -6,7 +6,7 @@ import logging
 import math
 import re
 import os
-
+from database.fsub import force_sub_db
 import pyrogram
 from pyrogram import Client, enums, filters
 from pyrogram.errors import FloodWait, MessageNotModified, PeerIdInvalid, UserIsBlocked
@@ -61,11 +61,16 @@ SPELL_CHECK = {}
 
 #result = Client.export_chat_invite_link(chat_id=AUTH_CHANNEL )
 
-async def getInviteLink(client):
-    channel_id = AUTH_CHANNEL
-    invite_link_obj = await client.export_chat_invite_link(chat_id=channel_id)
-    return invite_link_obj
-
+async def getInviteLink(bot: Client):
+    fsub_id = await force_sub_db.get_fsub()
+    jr = await force_sub_db.getJoin()
+    invite_link = temp.INVITE_LINK.get(f"{fsub_id}_{jr}")
+    if not invite_link:
+        invite_link = await bot.create_chat_invite_link(
+            chat_id=int(fsub_id), creates_join_request=jr
+        )
+        temp.INVITE_LINK[f"{fsub_id}_{jr}"] = invite_link
+    return invite_link
 
 
 @Client.on_message(filters.group & filters.text & filters.incoming)
@@ -775,8 +780,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
 async def auto_filter(client, msg, spoll=False):
     if not spoll:
-        invite_link_obj = await getInviteLink(client)
-        invite_link = str(invite_link_obj)
+        invite_link = await getInviteLink(client)
+        #invite_link = str(invite_link_obj)
         message = msg
         settings = await get_settings(message.chat.id)
         if message.text.startswith("/"):
@@ -824,15 +829,16 @@ async def auto_filter(client, msg, spoll=False):
             ]
             for file in files
         ]
-    btn.insert(0,
+    invite_link = await getInviteLink(client)
+    btn.insert(
+        0,
         [
-              InlineKeyboardButton(
-                        "💢 𝗝𝗼𝗶𝗻 𝗢𝘂𝗿 𝗠𝗮𝗶𝗻 𝗰𝗵𝗮𝗻𝗻𝗲𝗹 💢", url = invite_link
-
-                    )
-         ],
-                  )
-
+            InlineKeyboardButton(
+                "💢 𝗝𝗼𝗶𝗻 𝗢𝘂𝗿 𝗠𝗮𝗶𝗻 𝗰𝗵𝗮𝗻𝗻𝗲𝗹 💢",
+                url=invite_link,
+            )
+        ],
+                                                         )
     if offset != "":
         key = f"{message.chat.id}-{message.id}"
         BUTTONS[key] = search
