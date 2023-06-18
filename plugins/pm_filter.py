@@ -122,6 +122,12 @@ async def next_page(bot, query):
             ]
             for file in files
         ]
+   if AUTH_CHANNEL and not await is_subscribed(client, message):
+       try:
+          invite_link = await getInviteLink(client)
+       except ChatAdminRequired:
+            logger.error("Make sure Bot is admin in Forcesub channel")
+            return
     btn.insert(0, 
         [
                 InlineKeyboardButton(
