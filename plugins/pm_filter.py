@@ -58,7 +58,7 @@ logger.setLevel(logging.ERROR)
 BUTTONS = {}
 SPELL_CHECK = {}
 
-result = Client.export_chat_invite_link(chat_id=AUTH_CHANNEL)
+#result = Client.export_chat_invite_link(chat_id=AUTH_CHANNEL)
 
 
 @Client.on_message(filters.group & filters.text & filters.incoming)
@@ -125,7 +125,7 @@ async def next_page(bot, query):
     btn.insert(0, 
         [
                 InlineKeyboardButton(
-                    "💢 𝗝𝗼𝗶𝗻 𝗢𝘂𝗿 𝗠𝗮𝗶𝗻 𝗰𝗵𝗮𝗻𝗻𝗲𝗹 💢", url=f"{result.invite_link}"
+                    "💢 𝗝𝗼𝗶𝗻 𝗢𝘂𝗿 𝗠𝗮𝗶𝗻 𝗰𝗵𝗮𝗻𝗻𝗲𝗹 💢",url="t.me/{AUTH_CHANNEL}"
                 )
         ]
 )
