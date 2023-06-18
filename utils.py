@@ -7,7 +7,7 @@ from typing import List, Union
 
 import requests
 from bs4 import BeautifulSoup
-from imdb import IMDb
+from imdb import Cinemagoer 
 from pyrogram import Client, enums
 from pyrogram.errors import (
     FloodWait,
@@ -33,7 +33,7 @@ BTN_URL_REGEX = re.compile(
     r"(\[([^\[]+?)\]\((buttonurl|buttonalert):(?:/{0,2})(.+?)(:same)?\))"
 )
 
-imdb = IMDb()
+imdb = Cinemagoer()
 
 scheduler = AsyncIOScheduler(timezone=str(tzlocal.get_localzone()))
 
