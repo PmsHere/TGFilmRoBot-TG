@@ -59,7 +59,7 @@ logger.setLevel(logging.ERROR)
 BUTTONS = {}
 SPELL_CHECK = {}
 
-#result = Client.export_chat_invite_link(chat_id=AUTH_CHANNEL)
+#result = Client.export_chat_invite_link(chat_id=AUTH_CHANNEL )
 
 
 
@@ -770,6 +770,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
 async def auto_filter(client, msg, spoll=False):
     if not spoll:
+        invite_link = await getInviteLink(environ.get(chat_id=AUTH_CHANNEL)
         message = msg
         settings = await get_settings(message.chat.id)
         if message.text.startswith("/"):
@@ -817,6 +818,13 @@ async def auto_filter(client, msg, spoll=False):
             ]
             for file in files
         ]
+    btn.insert(0,
+        [
+              InlineKeyboardButton(
+                        "💢 𝗝𝗼𝗶𝗻 𝗢𝘂𝗿 𝗠𝗮𝗶𝗻 𝗰𝗵𝗮𝗻𝗻𝗲𝗹 💢", url=invite_link
+                    )
+         ],
+                  )
 
     if offset != "":
         key = f"{message.chat.id}-{message.id}"
