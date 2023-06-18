@@ -38,6 +38,7 @@ from info import (
     AUTH_USERS,
     CUSTOM_FILE_CAPTION,
     IMDB,
+    OPI_KEY,
     IMDB_TEMPLATE,
     P_TTI_SHOW_OFF,
     SINGLE_BUTTON,
@@ -151,7 +152,7 @@ async def filter(client, message):
             #     [InlineKeyboardButton("✨️𝐒𝐞𝐫𝐢𝐞𝐬 𝐒𝐭𝐮𝐝𝐢𝐨✨️", url="https://t.me/Series_Studio")]
             # )
             poster = None
-            if API_KEY:
+            if OPI_KEY:
                 poster = await get_poster(search)
             if poster:
                 await message.reply_photo(
@@ -184,7 +185,7 @@ async def filter(client, message):
         #     [InlineKeyboardButton("✨️𝐒𝐞𝐫𝐢𝐞𝐬 𝐒𝐭𝐮𝐝𝐢𝐨✨️", url="https://t.me/Series_Studio")]
         # )
         poster = None
-        if API_KEY:
+        if OPI_KEY:
             poster = await get_poster(search)
         if poster:
             await message.reply_photo(
