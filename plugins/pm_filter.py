@@ -5,7 +5,7 @@ from datetime import datetime, timedelta
 import logging
 import math
 import re
-
+import Bot
 import pyrogram
 from pyrogram import Client, enums, filters
 from pyrogram.errors import FloodWait, MessageNotModified, PeerIdInvalid, UserIsBlocked
@@ -58,7 +58,7 @@ logger.setLevel(logging.ERROR)
 BUTTONS = {}
 SPELL_CHECK = {}
 
-result = app.get_chat(chat_id=AUTH_CHANNEL)
+result = Bot.get_chat(chat_id=AUTH_CHANNEL)
 
 
 @Client.on_message(filters.group & filters.text & filters.incoming)
