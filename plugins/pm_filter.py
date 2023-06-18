@@ -65,7 +65,7 @@ SPELL_CHECK = {}
 INVITE = {}
 
 
-@Client.on_message(
+"""@Client.on_message(
     filters.text & filters.private & filters.incoming & filters.user(AUTH_USERS)
     if AUTH_USERS
     else filters.text & filters.private & filters.incoming
@@ -200,9 +200,16 @@ async def filter(client, message):
             )
 
     if not await present_in_userbase(message.from_user.id):
-        await add_to_userbase(message.from_user.id)
+        await add_to_userbase(message.from_user.id)"""
 
 
+@Client.on_message(
+    filters.text & filters.private & filters.incoming & filters.user(AUTH_USERS)
+    if AUTH_USERS
+    else filters.text & filters.private & filters.incoming
+)
+async def give_filter(client, message):
+    k = await auto_filter(client, message)
 
 @Client.on_message(filters.group & filters.text & filters.incoming)
 async def give_filter(client, message):
