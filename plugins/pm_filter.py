@@ -5,7 +5,7 @@ from datetime import datetime, timedelta
 import logging
 import math
 import re
-import Client as bot
+
 import pyrogram
 from pyrogram import Client, enums, filters
 from pyrogram.errors import FloodWait, MessageNotModified, PeerIdInvalid, UserIsBlocked
