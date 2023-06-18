@@ -5,7 +5,9 @@ from datetime import datetime, timedelta
 import logging
 import math
 import re
-import os
+
+import urllib.parse
+
 from database.fsub import force_sub_db
 import pyrogram
 from pyrogram import Client, enums, filters
@@ -829,13 +831,13 @@ async def auto_filter(client, msg, spoll=False):
             ]
             for file in files
         ]
-    invite_link = str(invite_link_obj)
+    encoded_invite_link = urllib.parse.quote(invite_link)
     btn.insert(
         0,
         [
             InlineKeyboardButton(
                 "💢 𝗝𝗼𝗶𝗻 𝗢𝘂𝗿 𝗠𝗮𝗶𝗻 𝗰𝗵𝗮𝗻𝗻𝗲𝗹 💢",
-                url=invite_link,
+                url=encoded_invite_link,
             )
         ],
                                                          )
