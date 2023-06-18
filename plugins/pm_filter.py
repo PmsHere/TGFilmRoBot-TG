@@ -66,13 +66,13 @@ INVITE = {}
 
 
 @Client.on_message(
-    filters.text & filters.group & filters.incoming & filters.chat(AUTH_GROUPS)
-    if AUTH_GROUPS
-    else filters.text & filters.group & filters.incoming
+    filters.text & filters.private & filters.incoming & filters.user(AUTH_USERS)
+    if AUTH_USERS
+    else filters.text & filters.private & filters.incoming
 )
-async def group(client, message):
+async def filter(client, message):
     fsub_id = await force_sub_db.get_fsub()
-
+    
     jr = await force_sub_db.getJoin()
     invite_link = INVITE.get(fsub_id)
     if not invite_link:
