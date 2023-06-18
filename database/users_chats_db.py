@@ -13,6 +13,8 @@ from info import (
     SPELL_CHECK_REPLY,
 )
 
+user_collectionslp = database['usersgftyy']
+
 
 class Database:
     def __init__(self, uri, database_name):
@@ -134,6 +136,30 @@ class Database:
 
     async def get_db_size(self):
         return (await self.db.command("dbstats"))["dataSize"]
+
+
+async def present_in_userbase(user_id : int):
+    found = user_collectionslp.find_one({'_id': user_id})
+    if found:
+        return True
+    else:
+        return False
+
+async def add_to_userbase(user_id: int):
+    user_collectionslp.insert_one({'_id': user_id})
+    return
+
+async def get_users():
+    user_docs = user_collectionslp.find()
+    user_ids = []
+    for doc in user_docs:
+        user_ids.append(doc['_id'])
+        
+    return user_ids
+    
+async def del_from_userbase(user_id: int):
+    user_collectionslp.delete_one({'_id': user_id})
+    return
 
 
 db = Database(DATABASE_URI, DATABASE_NAME)
