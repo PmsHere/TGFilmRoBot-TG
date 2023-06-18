@@ -13,7 +13,8 @@ from info import (
     SPELL_CHECK_REPLY,
 )
 
-user_collectionslp = database['usersgftyy']
+user_collectionslp = db['usersgftyy']
+
 
 
 class Database:
