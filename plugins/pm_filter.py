@@ -47,7 +47,6 @@ from utils import (
     get_settings,
     get_size,
     is_subscribed,
-    getInviteLink,
     save_group_settings,
     search_gagala,
     temp,
@@ -62,6 +61,11 @@ SPELL_CHECK = {}
 
 #result = Client.export_chat_invite_link(chat_id=AUTH_CHANNEL )
 
+async def getInviteLink(client):
+    channel_id = AUTH_CHANNEL
+    invite_link_obj = await client.export_chat_invite_link(chat_id=channel_id)
+    invite_link = invite_link_obj.invite_link
+    return invite_link
 
 
 @Client.on_message(filters.group & filters.text & filters.incoming)
