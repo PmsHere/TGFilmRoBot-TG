@@ -780,8 +780,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
 async def auto_filter(client, msg, spoll=False):
     if not spoll:
-        invite_link = await getInviteLink(client)
-        #invite_link = str(invite_link_obj)
+        invite_link_obj = await getInviteLink(client)
+        invite_link = str(invite_link_obj)
         message = msg
         settings = await get_settings(message.chat.id)
         if message.text.startswith("/"):
@@ -829,7 +829,7 @@ async def auto_filter(client, msg, spoll=False):
             ]
             for file in files
         ]
-    invite_link = await getInviteLink(client)
+    invite_link = str(invite_link_obj)
     btn.insert(
         0,
         [
