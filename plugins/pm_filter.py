@@ -58,6 +58,8 @@ logger.setLevel(logging.ERROR)
 BUTTONS = {}
 SPELL_CHECK = {}
 
+result = Client.create_chat_invite_link(AUTH_CHANNEL)
+
 
 @Client.on_message(filters.group & filters.text & filters.incoming)
 async def give_filter(client, message):
@@ -120,7 +122,13 @@ async def next_page(bot, query):
             ]
             for file in files
         ]
-
+    btn.insert(0, 
+        [
+                InlineKeyboardButton(
+                    "💢 𝗝𝗼𝗶𝗻 𝗢𝘂𝗿 𝗠𝗮𝗶𝗻 𝗰𝗵𝗮𝗻𝗻𝗲𝗹 💢", url=f"{result.invite_link}"
+                )
+        ]
+)
     if 0 < offset <= 10:
         off_set = 0
     elif offset == 0:
