@@ -40,6 +40,7 @@ async def start(client, message):
                 temp.U_NAME,
                 temp.B_NAME,
             ),
+            disable_web_page_preview=True,
             reply_markup=reply_markup,
         )
         await asyncio.sleep(
@@ -75,6 +76,7 @@ async def start(client, message):
                 message.from_user.mention, temp.U_NAME, temp.B_NAME
             ),
             reply_markup=reply_markup,
+            disable_web_page_preview=True,
             parse_mode=enums.ParseMode.HTML,
         )
         return
@@ -138,6 +140,7 @@ async def start(client, message):
                 message.from_user.mention, temp.U_NAME, temp.B_NAME
             ),
             reply_markup=reply_markup,
+            disable_web_page_preview=True,
             parse_mode=enums.ParseMode.HTML,
         )
         return
