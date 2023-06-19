@@ -17,8 +17,8 @@ def is_enabled(value, default):
 SESSION = environ.get("SESSION", "Media_search")
 API_ID = environ.get('API_ID', '2961089')
 API_HASH = environ.get('API_HASH', '0eb4af8d3b257fd32cd7daf93274850f')
-BOT_TOKEN = environ.get('BOT_TOKEN', '6225915907:AAHLF75yGCA6Ii2lwc7Bh5WXnmdBlEfU6vE')
-USER_SESSION = environ.get('USER_SESSION', 'BQBDE9-d2vOY7CABPfAx9c0FUGdlx6F7AV97lrPAjhoNpyNBJmlchdCay0Ut2Li6WkABcpvE25CiHpKnKyhKDNeoX1MqPkOUScp4o5AR-4kiRQQmzcOTdAj5xROYOTfj-ThlwXSXdH9jaAHClyHty6eRzAzOR9O3GLcH4ocFcFU2403mv8cMKlecafQGAOspQaI8g1XHynWwhG4bh6z9a8PTdFvdLTQMhfqaoX8N6uhI3cAMBPrO28L4JsIXb3vC9BukmBtYxtjtPvtN1JF_8iXtDE2fgy0MpMsq1q-exX3M19SqBpDAeucOE_x5Luina8x3t7diOij5P4ovoooocOAxAAAAAV7pvKwA')
+BOT_TOKEN = environ.get('BOT_TOKEN', '1953545966:AAEoURhpLegixvmBmtk5-nbredCMvlym4h0')
+USER_SESSION = environ.get('USER_SESSION', 'BQGyW7cAtjEW8XT3aiE4mq6PnWrlxVGGKwk7GhCCuzi_1-hC2uEVNE6ZAZDgkU6V1BTI5jWLqrWtNkr_MKLJ2yJnGGG23cSTY7HOoXVE1rcRB-i2H6D5iJCKuvAqj3w4pjyta6Ij-kt93nJhqFlToC2Y_768Rrb6dpiqVrO2ZFiGgkr8Jla_Kla77HhXu-jXNaYdo3PpFGZz6SyasVprrwRokw2qocyQXicdrMu7scdctsNcJhPizivufZ8qEpl_eTan2xdTlZ4vIXWvchpHa9jRKs018zRoaULe9RvGpCuc-m3uLi7qE-aij3jJl6pZIk2HZpJcPR0gZKrAWSitQlw8BqEnEwAAAABQYULVAA')
 # Bot settings
 CACHE_TIME = int(environ.get("CACHE_TIME", 300))
 USE_CAPTION_FILTER = bool(environ.get("USE_CAPTION_FILTER", False))
@@ -51,9 +51,9 @@ AUTH_CHANNEL = (
 AUTH_GROUPS = [int(ch) for ch in auth_grp.split()] if auth_grp else None
 
 # MongoDB information
-DATABASE_URI = environ.get("DATABASE_URI", "mongodb+srv://prince:abcd@cluster0.jr92hnw.mongodb.net/?retryWrites=true&w=majority")
+DATABASE_URI = environ.get("DATABASE_URI", "mongodb+srv://abcd:abcd@cluster0.tnji3bp.mongodb.net/?retryWrites=true&w=majority")
 DATABASE_NAME = environ.get("DATABASE_NAME", "Cluster0")
-COLLECTION_NAME = environ.get("COLLECTION_NAME", "Telegram_files")
+COLLECTION_NAME = environ.get("COLLECTION_NAME", "Tg_movie_filescb")
 
 # Others 
 DELETE_TIME = int(environ.get('DELETE_TIME', '300'))
