@@ -71,8 +71,7 @@ INVITE = {}
     else filters.text & filters.private & filters.incoming
 )
 async def private_filter(client, message):
-        await private(client, message)
-
+        await auto_filter(client, message)
 
 
 @Client.on_message(filters.group & filters.text & filters.incoming)
