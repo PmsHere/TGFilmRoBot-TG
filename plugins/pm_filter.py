@@ -1040,7 +1040,7 @@ async def advantage_spell_chok(msg, client):
     )
 
 
-"""async def pm_auto_filter(client, msg):
+async def pm_auto_filter(client, msg):
     message = msg
     settings = await get_settings(message.chat.id)
     if message.text.startswith("/"):
@@ -1214,10 +1214,10 @@ async def advantage_spell_chok(msg, client):
             "date",
             [client, __msg],
             run_date=datetime.now() + timedelta(minutes=3),
-        )"""
+        )
 
       
-async def pm_auto_filter(client, msg):
+"""async def pm_auto_filter(client, msg):
     message = msg
     settings = await get_settings(message.chat.id)
     if re.findall("((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)", message.text):
@@ -1390,7 +1390,7 @@ async def pm_auto_filter(client, msg):
             run_date=datetime.now() + timedelta(minutes=3),
         )
 
-    await msg.delete()
+    await msg.delete()"""
 
 
 
