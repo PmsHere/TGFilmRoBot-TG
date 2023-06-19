@@ -91,7 +91,6 @@ async def start(client, message):
                 message.from_user.mention, temp.U_NAME, temp.B_NAME
             ),
             reply_markup=reply_markup,
-            disable_web_page_preview=True,
             parse_mode=enums.ParseMode.HTML,
         )
         return
