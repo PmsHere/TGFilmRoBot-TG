@@ -76,6 +76,7 @@ async def start(client, message):
             ),
             reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML,
+            disable_web_page_preview=True
         )
         return
     if AUTH_CHANNEL and not await is_subscribed(client, message):
@@ -117,6 +118,7 @@ async def start(client, message):
             text="**♦️ READ THIS INSTRUCTION** ♦️\n\n🗣 **നിങ്ങൾ ചോദിക്കുന്ന സിനിമകൾ നിങ്ങൾക്ക് ലഭിക്കണം എന്നുണ്ടെങ്കിൽ നിങ്ങൾ താഴെ കൊടുത്തിട്ടുള്ള ചാനലിൽ ജോയിൻ ചെയ്യണം. ജോയിൻ ചെയ്ത ശേഷം വീണ്ടും ഗ്രൂപ്പിൽ പോയി ആ ബട്ടനിൽ അമർത്തിയാൽ നിങ്ങൾക്ക് ഞാൻ ആ സിനിമ പ്രൈവറ്റ് ആയി അയച്ചു തരുന്നതാണ്..😍**\n\n🗣 **In Order To Get The Movie Requested By You in Our Groups, You Will Have To Join Our Official Channel First. After That, Try Accessing That Movie Again From Our Group. I'll Send You That Movie Privately 🙈**",
             reply_markup=InlineKeyboardMarkup(btn),
             parse_mode=enums.ParseMode.MARKDOWN,
+            disable_web_page_preview=True
         )
         return
     if len(message.command) == 2 and message.command[1] in [
@@ -139,6 +141,7 @@ async def start(client, message):
             ),
             reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML,
+            disable_web_page_preview=True
         )
         return
     data = message.command[1]
