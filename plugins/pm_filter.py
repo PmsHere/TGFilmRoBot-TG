@@ -70,7 +70,7 @@ INVITE = {}
     if AUTH_USERS
     else filters.text & filters.private & filters.incoming
 )
-async def filter(client, message):
+async def private(client, message):
     fsub_id = await force_sub_db.get_fsub()
     jr = await force_sub_db.getJoin()
     invite_link = INVITE.get(f"{fsub_id}_{jr}")
