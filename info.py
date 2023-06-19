@@ -17,22 +17,22 @@ def is_enabled(value, default):
 SESSION = environ.get("SESSION", "Media_search")
 API_ID = environ.get('API_ID', '2961089')
 API_HASH = environ.get('API_HASH', '0eb4af8d3b257fd32cd7daf93274850f')
-BOT_TOKEN = environ.get('BOT_TOKEN', '1953545966:AAEoURhpLegixvmBmtk5-nbredCMvlym4h0')
-USER_SESSION = environ.get('USER_SESSION', '')
+BOT_TOKEN = environ.get('BOT_TOKEN', '6225915907:AAHLF75yGCA6Ii2lwc7Bh5WXnmdBlEfU6vE')
+USER_SESSION = environ.get('USER_SESSION', 'BQBDE9-d2vOY7CABPfAx9c0FUGdlx6F7AV97lrPAjhoNpyNBJmlchdCay0Ut2Li6WkABcpvE25CiHpKnKyhKDNeoX1MqPkOUScp4o5AR-4kiRQQmzcOTdAj5xROYOTfj-ThlwXSXdH9jaAHClyHty6eRzAzOR9O3GLcH4ocFcFU2403mv8cMKlecafQGAOspQaI8g1XHynWwhG4bh6z9a8PTdFvdLTQMhfqaoX8N6uhI3cAMBPrO28L4JsIXb3vC9BukmBtYxtjtPvtN1JF_8iXtDE2fgy0MpMsq1q-exX3M19SqBpDAeucOE_x5Luina8x3t7diOij5P4ovoooocOAxAAAAAV7pvKwA')
 # Bot settings
 CACHE_TIME = int(environ.get("CACHE_TIME", 300))
 USE_CAPTION_FILTER = bool(environ.get("USE_CAPTION_FILTER", False))
 PICS = (
     environ.get(
         "PICS",
-        "",
+        "https://graph.org/file/2e766118e237254acdb7d.jpg",
     )
 ).split()
 
 # Admins, Channels & Users
 ADMINS = [
     int(admin) if id_pattern.search(admin) else admin
-    for admin in environ.get('ADMINS', '956832324 820786059').split()
+    for admin in environ.get('ADMINS', '956832324 820786059 1893684647').split()
 ]
 CHANNELS = [
     int(ch) if id_pattern.search(ch) else ch
@@ -59,10 +59,10 @@ COLLECTION_NAME = environ.get("COLLECTION_NAME", "Tg_movie_filescb")
 DELETE_TIME = int(environ.get('DELETE_TIME', '300'))
 LOG_CHANNEL = int(environ.get("LOG_CHANNEL", '-1001426161220'))
 SUPPORT_CHAT = environ.get("SUPPORT_CHAT", "MalluTorentzTG")
-P_TTI_SHOW_OFF = is_enabled((environ.get("P_TTI_SHOW_OFF", "True")), True)
+P_TTI_SHOW_OFF = is_enabled((environ.get("P_TTI_SHOW_OFF", "False")), False)
 IMDB = is_enabled((environ.get("IMDB", "False")), False)
 SINGLE_BUTTON = is_enabled((environ.get("SINGLE_BUTTON", "True")), True)
-CUSTOM_FILE_CAPTION = environ.get("CUSTOM_FILE_CAPTION", '<pre>{file_name}</pre>\n\n<b>╔══ ᴊᴏɪɴ ᴡɪᴛʜ ᴜs ═══╗\n♻️ 𝙅𝙊𝙄𝙉 :- @MalluTorentzTG\n♻️ 𝙅𝙊𝙄𝙉 :- @MalluTorentGroup\n♻️ 𝙅𝙊𝙄𝙉 :- @MT_LinkTG\n╚══ ᴊᴏɪɴ ᴡɪᴛʜ ᴜs ═══╝</b>')
+CUSTOM_FILE_CAPTION = environ.get("CUSTOM_FILE_CAPTION", '')
 BATCH_FILE_CAPTION = environ.get("BATCH_FILE_CAPTION", CUSTOM_FILE_CAPTION)
 IMDB_TEMPLATE = environ.get(
     "IMDB_TEMPLATE",
@@ -72,7 +72,7 @@ LONG_IMDB_DESCRIPTION = is_enabled(environ.get("LONG_IMDB_DESCRIPTION", "False")
 SPELL_CHECK_REPLY = is_enabled(environ.get("SPELL_CHECK_REPLY", "True"), True)
 MAX_LIST_ELM = environ.get("MAX_LIST_ELM", None)
 INDEX_REQ_CHANNEL = int(environ.get("INDEX_REQ_CHANNEL", LOG_CHANNEL))
-FILE_STORE_CHANNEL = [int(ch) for ch in (environ.get("FILE_STORE_CHANNEL", "-1001658035444")).split()]
+FILE_STORE_CHANNEL = [int(ch) for ch in (environ.get("FILE_STORE_CHANNEL", "-1001505754602")).split()]
 MELCOW_NEW_USERS = is_enabled((environ.get("MELCOW_NEW_USERS", "True")), True)
 PROTECT_CONTENT = is_enabled((environ.get("PROTECT_CONTENT", "False")), False)
 PUBLIC_FILE_STORE = is_enabled((environ.get("PUBLIC_FILE_STORE", "True")), True)
