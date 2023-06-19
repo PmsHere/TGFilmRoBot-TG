@@ -42,7 +42,6 @@ async def start(client, message):
                 temp.U_NAME,
                 temp.B_NAME,
             ),
-            disable_web_page_preview=True,
             reply_markup=reply_markup,
         )
         await asyncio.sleep(
@@ -85,9 +84,9 @@ async def start(client, message):
             ],
         ]
         reply_markup = InlineKeyboardMarkup(buttons)
-        await message.reply_photo(
-            photo=random.choice(PICS),
-            caption=script.START_TXT.format(
+        await message.reply_text(
+            #photo=random.choice(PICS),
+            text=script.START_TXT.format(
                 message.from_user.mention, temp.U_NAME, temp.B_NAME
             ),
             reply_markup=reply_markup,
@@ -161,9 +160,9 @@ async def start(client, message):
             ],
         ]
         reply_markup = InlineKeyboardMarkup(buttons)
-        await message.reply_photo(
-            photo=random.choice(PICS),
-            caption=script.START_TXT.format(
+        await message.reply_text(
+            #photo=random.choice(PICS),
+            text=script.START_TXT.format(
                 message.from_user.mention, temp.U_NAME, temp.B_NAME
             ),
             reply_markup=reply_markup,
