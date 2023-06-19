@@ -28,7 +28,7 @@ BATCH_FILES = {}
 async def start(client, message):
     if message.chat.type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
         buttons = [
-            [InlineKeyboardButton("🌟 Movies", url="https://t.me/MalluTorentzTG")],
+            [InlineKeyboardButton("🌟 Movies", url="https://t.me/+UB6y4_vlTIY3N2Vl")],
             [
                 InlineKeyboardButton(
                     "ℹ️ Help", url=f"https://t.me/{temp.U_NAME}?start=help"
@@ -66,21 +66,8 @@ async def start(client, message):
     if len(message.command) != 2:
         buttons = [
             [
-                InlineKeyboardButton(
-                    "📮 ᴄᴏᴍᴘʟᴀɪɴᴛꜱ/ ꜰᴇᴇᴅʙᴀᴄᴋ" ,
-                    url="http://t.me/PmsHereRobot",
-                )
-            ],
-            [
-                InlineKeyboardButton("ᴍᴇɴᴜ ⚙", callback_data="help"),
-                InlineKeyboardButton("🪄 ᴍᴀɢɪᴄ", url=f"http://t.me/{temp.U_NAME}?startgroup=true"),
-            ],
-            [
-                InlineKeyboardButton("ᴏᴡɴᴇʀ 🧠", url="http://t.me/chiyaan_dhruv"),
-                InlineKeyboardButton("📝 ʀᴇᴀᴅ ᴛʜɪꜱ", callback_data="about"),
-            ],
-            [
-                InlineKeyboardButton("❤️‍🔥 ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴍᴀʟʟᴜ ᴛᴏʀᴇɴᴛᴢ", url="http://t.me/Mallutorentztg"),
+                InlineKeyboardButton("⚜️Channel⚜️", url=invite_link.invite_link),
+                InlineKeyboardButton("⚜️Group⚜️", url=f"https://t.me/+UB6y4_vlTIY3N2Vl"),
             ],
         ]
         reply_markup = InlineKeyboardMarkup(buttons)
@@ -129,7 +116,7 @@ async def start(client, message):
                 )
         await client.send_message(
             chat_id=message.from_user.id,
-            text="**താഴെ കൊടുത്തിട്ടുള്ള ചാനലിൽ ജോയിൻ ചെയ്താൽ മാത്രമേ ഫയൽ കിട്ടുകയോള്ളൂ..\n\nJoin my channel mentioned above to get the file you requested..**",
+            text="",
             reply_markup=InlineKeyboardMarkup(btn),
             parse_mode=enums.ParseMode.MARKDOWN,
         )
@@ -142,21 +129,8 @@ async def start(client, message):
     ]:
         buttons = [
             [
-                InlineKeyboardButton(
-                    "📮 ᴄᴏᴍᴘʟᴀɪɴᴛꜱ/ ꜰᴇᴇᴅʙᴀᴄᴋ" ,
-                    url="http://t.me/PmsHereRobot",
-                )
-            ],
-            [
-                InlineKeyboardButton("ᴍᴇɴᴜ ⚙", callback_data="help"),
-                InlineKeyboardButton("🪄 ᴍᴀɢɪᴄ", url=f"http://t.me/{temp.U_NAME}?startgroup=true"),
-            ],
-            [
-                InlineKeyboardButton("ᴏᴡɴᴇʀ 🧠", url="http://t.me/chiyaan_dhruv"),
-                InlineKeyboardButton("📝 ʀᴇᴀᴅ ᴛʜɪꜱ", callback_data="about"),
-            ],
-            [
-                InlineKeyboardButton("❤️‍🔥 ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴍᴀʟʟᴜ ᴛᴏʀᴇɴᴛᴢ", url="http://t.me/Mallutorentztg"),
+                InlineKeyboardButton("⚜️Channel⚜️", url=invite_link.invite_link),
+                InlineKeyboardButton("⚜️Group⚜️", url=f"https://t.me/+UB6y4_vlTIY3N2Vl"),
             ],
         ]
         reply_markup = InlineKeyboardMarkup(buttons)
