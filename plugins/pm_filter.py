@@ -899,7 +899,7 @@ async def auto_filter(client, msg, spoll=False):
             **locals(),
         )
     else:
-        cap = f"<b>ആദ്യം ഈ ബോട്ടിൽ പോയിട്ട് ജോയിൻ ആവുക. അതിനു ശേഷം ഇവിടെ മൂവി ക്ലിക്ക് ചെയ്യുക.\nബോട്ട് 👉@Lord_Shiva_Bot👈.\nHere is what i found for your query👇👇👇👇\n #{search}</b>"
+      cap = f"<b>Total Files:</b><code>{len(files)}</code>\n<b>Movie Name:</b> <code>{search}</code>\n\n<b>© മഹാദേവൻ</b>"
     __msg = None
     if imdb and imdb.get("poster"):
         try:
@@ -1174,8 +1174,7 @@ async def pm_auto_filter(client, msg):
             **locals(),
         )
     else:
-        cap = f"<b>ആദ്യം ഈ ബോട്ടിൽ പോയിട്ട് ജോയിൻ ആവുക. അതിനു ശേഷം ഇവിടെ മൂവി ക്ലിക്ക് ചെയ്യുക.\nബോട്ട് 👉@Lord_Shiva_Bot👈.\nHere is what i found for your query👇👇👇👇\n #{search}</b>"
-
+      cap = f"<b>Total Files:</b><code>{len(files)}</code>\n<b>Movie Name:</b> <code>{search}</code>\n\n<b>© മഹാദേവൻ</b>"  
     __msg = None
     if imdb and imdb.get("poster"):
         try:
@@ -1202,17 +1201,7 @@ async def pm_auto_filter(client, msg):
             caption=cap, reply_markup=InlineKeyboardMarkup(btn)
                                          
             )
-
-      
-                
-    
-
-
-
-
-
-
-
+                    
 async def manual_filters(client, message, text=False):
     group_id = message.chat.id
     name = text or message.text
