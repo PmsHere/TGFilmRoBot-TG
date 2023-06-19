@@ -66,7 +66,7 @@ async def start(client, message):
     if len(message.command) != 2:
         buttons = [
             [
-                InlineKeyboardButton("⚜️Channel⚜️", url=invite_link.invite_link),
+                InlineKeyboardButton("⚜️Channel⚜️", url=f"https://t.me/+UB6y4_vlTIY3N2Vl"),
                 InlineKeyboardButton("⚜️Group⚜️", url=f"https://t.me/+UB6y4_vlTIY3N2Vl"),
             ],
         ]
@@ -129,7 +129,7 @@ async def start(client, message):
     ]:
         buttons = [
             [
-                InlineKeyboardButton("⚜️Channel⚜️", url=invite_link.invite_link),
+                InlineKeyboardButton("⚜️Channel⚜️", url=f"https://t.me/+UB6y4_vlTIY3N2Vl"),
                 InlineKeyboardButton("⚜️Group⚜️", url=f"https://t.me/+UB6y4_vlTIY3N2Vl"),
             ],
         ]
