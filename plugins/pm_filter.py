@@ -1072,11 +1072,9 @@ async def pm_auto_filter(client, msg):
 
     if not await present_in_userbase(message.from_user.id):
         await add_to_userbase(message.from_user.id)
-
-    if message.text.startswith("/"):
-        return
-    if fsub_id:
-        if not await is_subscribed(client, message):
+        if message.text.startswith("/"):
+            return
+        if fsub_id:
             await client.send_message(
                 chat_id=message.from_user.id,
                 text=f"**♦️ READ THIS INSTRUCTION ♦️**\n\n__🗣 To receive the requested movies, you must first join our official channel. After joining, try accessing the movie again from our group. I will send you the movie privately. 😍\n\n🗣 Join our official channel and try:\n\n[{invite_link.invite_link}]**",
@@ -1092,7 +1090,6 @@ async def pm_auto_filter(client, msg):
                 parse_mode=enums.ParseMode.MARKDOWN,
                 disable_web_page_preview=True,
             )
-
     pre = "filep" if settings["file_secure"] else "file"
     if settings["button"]:
         btn = [
