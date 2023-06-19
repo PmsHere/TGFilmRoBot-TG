@@ -76,8 +76,6 @@ FILE_STORE_CHANNEL = [int(ch) for ch in (environ.get("FILE_STORE_CHANNEL", "-100
 MELCOW_NEW_USERS = is_enabled((environ.get("MELCOW_NEW_USERS", "True")), True)
 PROTECT_CONTENT = is_enabled((environ.get("PROTECT_CONTENT", "False")), False)
 PUBLIC_FILE_STORE = is_enabled((environ.get("PUBLIC_FILE_STORE", "True")), True)
-OMDB_API_KEY = environ.get("OMDB_API_KEY", "bec53ac9")
-OPI_KEY = None if OMDB_API_KEY.strip() == "" else OMDB_API_KEY
 LOG_STR = "Current Cusomized Configurations are:-\n"
 LOG_STR += (
     "IMDB Results are enabled, Bot will be showing imdb details for you queries.\n"
