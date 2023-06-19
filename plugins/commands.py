@@ -28,11 +28,9 @@ BATCH_FILES = {}
 async def start(client, message):
     if message.chat.type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
         buttons = [
-            [InlineKeyboardButton("🌟 Movies", url="https://t.me/MalluTorentzTG")],
             [
-                InlineKeyboardButton(
-                    "ℹ️ Help", url=f"https://t.me/{temp.U_NAME}?start=help"
-                ),
+                InlineKeyboardButton("⚜️Channel⚜️", url="https://t.me/+UB6y4_vlTIY3N2Vl"),
+                InlineKeyboardButton("⚜️Group⚜️", url="https://t.me/+UB6y4_vlTIY3N2Vl"),
             ],
         ]
         reply_markup = InlineKeyboardMarkup(buttons)
@@ -66,21 +64,8 @@ async def start(client, message):
     if len(message.command) != 2:
         buttons = [
             [
-                InlineKeyboardButton(
-                    "📮 ᴄᴏᴍᴘʟᴀɪɴᴛꜱ/ ꜰᴇᴇᴅʙᴀᴄᴋ" ,
-                    url="http://t.me/PmsHereRobot",
-                )
-            ],
-            [
-                InlineKeyboardButton("ᴍᴇɴᴜ ⚙", callback_data="help"),
-                InlineKeyboardButton("🪄 ᴍᴀɢɪᴄ", url=f"http://t.me/{temp.U_NAME}?startgroup=true"),
-            ],
-            [
-                InlineKeyboardButton("ᴏᴡɴᴇʀ 🧠", url="http://t.me/chiyaan_dhruv"),
-                InlineKeyboardButton("📝 ʀᴇᴀᴅ ᴛʜɪꜱ", callback_data="about"),
-            ],
-            [
-                InlineKeyboardButton("❤️‍🔥 ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴍᴀʟʟᴜ ᴛᴏʀᴇɴᴛᴢ", url="http://t.me/Mallutorentztg"),
+                InlineKeyboardButton("⚜️Channel⚜️", url="https://t.me/+UB6y4_vlTIY3N2Vl"),
+                InlineKeyboardButton("⚜️Group⚜️", url="https://t.me/+UB6y4_vlTIY3N2Vl"),
             ],
         ]
         reply_markup = InlineKeyboardMarkup(buttons)
@@ -129,7 +114,7 @@ async def start(client, message):
                 )
         await client.send_message(
             chat_id=message.from_user.id,
-            text="**താഴെ കൊടുത്തിട്ടുള്ള ചാനലിൽ ജോയിൻ ചെയ്താൽ മാത്രമേ ഫയൽ കിട്ടുകയോള്ളൂ..\n\nJoin my channel mentioned above to get the file you requested..**",
+            text="**♦️ READ THIS INSTRUCTION** ♦️\n\n🗣 **നിങ്ങൾ ചോദിക്കുന്ന സിനിമകൾ നിങ്ങൾക്ക് ലഭിക്കണം എന്നുണ്ടെങ്കിൽ നിങ്ങൾ താഴെ കൊടുത്തിട്ടുള്ള ചാനലിൽ ജോയിൻ ചെയ്യണം. ജോയിൻ ചെയ്ത ശേഷം വീണ്ടും ഗ്രൂപ്പിൽ പോയി ആ ബട്ടനിൽ അമർത്തിയാൽ നിങ്ങൾക്ക് ഞാൻ ആ സിനിമ പ്രൈവറ്റ് ആയി അയച്ചു തരുന്നതാണ്..😍**\n\n🗣 **In Order To Get The Movie Requested By You in Our Groups, You Will Have To Join Our Official Channel First. After That, Try Accessing That Movie Again From Our Group. I'll Send You That Movie Privately 🙈**",
             reply_markup=InlineKeyboardMarkup(btn),
             parse_mode=enums.ParseMode.MARKDOWN,
         )
@@ -142,21 +127,8 @@ async def start(client, message):
     ]:
         buttons = [
             [
-                InlineKeyboardButton(
-                    "📮 ᴄᴏᴍᴘʟᴀɪɴᴛꜱ/ ꜰᴇᴇᴅʙᴀᴄᴋ" ,
-                    url="http://t.me/PmsHereRobot",
-                )
-            ],
-            [
-                InlineKeyboardButton("ᴍᴇɴᴜ ⚙", callback_data="help"),
-                InlineKeyboardButton("🪄 ᴍᴀɢɪᴄ", url=f"http://t.me/{temp.U_NAME}?startgroup=true"),
-            ],
-            [
-                InlineKeyboardButton("ᴏᴡɴᴇʀ 🧠", url="http://t.me/chiyaan_dhruv"),
-                InlineKeyboardButton("📝 ʀᴇᴀᴅ ᴛʜɪꜱ", callback_data="about"),
-            ],
-            [
-                InlineKeyboardButton("❤️‍🔥 ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴍᴀʟʟᴜ ᴛᴏʀᴇɴᴛᴢ", url="http://t.me/Mallutorentztg"),
+                InlineKeyboardButton("⚜️Channel⚜️", url="https://t.me/+UB6y4_vlTIY3N2Vl"),
+                InlineKeyboardButton("⚜️Group⚜️", url="https://t.me/+UB6y4_vlTIY3N2Vl"),
             ],
         ]
         reply_markup = InlineKeyboardMarkup(buttons)
