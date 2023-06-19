@@ -62,7 +62,7 @@ SUPPORT_CHAT = environ.get("SUPPORT_CHAT", "MalluTorentzTG")
 P_TTI_SHOW_OFF = is_enabled((environ.get("P_TTI_SHOW_OFF", "True")), True)
 IMDB = is_enabled((environ.get("IMDB", "False")), False)
 SINGLE_BUTTON = is_enabled((environ.get("SINGLE_BUTTON", "True")), True)
-CUSTOM_FILE_CAPTION = environ.get("CUSTOM_FILE_CAPTION", '{file_name}\n\n━═━═━═━═━═━═━═━═━═\n\n➠Cʜᴀɴɴᴇʟ : https://t.me/+UB6y4_vlTIY3N2Vl\n➠Gʀᴏᴜᴘ : https://t.me/+UB6y4_vlTIY3N2Vl')
+CUSTOM_FILE_CAPTION = environ.get("CUSTOM_FILE_CAPTION", '{file_name}\n\n━═━═━═━═━═━═━═━═━═\n\n<b>➠Cʜᴀɴɴᴇʟ : https://t.me/+UB6y4_vlTIY3N2Vl\n➠Gʀᴏᴜᴘ : https://t.me/+UB6y4_vlTIY3N2Vl</b>')
 BATCH_FILE_CAPTION = environ.get("BATCH_FILE_CAPTION", CUSTOM_FILE_CAPTION)
 IMDB_TEMPLATE = environ.get(
     "IMDB_TEMPLATE",
