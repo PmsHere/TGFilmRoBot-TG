@@ -1217,8 +1217,7 @@ async def advantage_spell_chok(msg, client):
         )"""
 
       
-
-    async def pm_auto_filter(client, msg):
+async def pm_auto_filter(client, msg):
     message = msg
     settings = await get_settings(message.chat.id)
     if re.findall("((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)", message.text):
