@@ -41,6 +41,7 @@ async def start(client, message):
                 temp.B_NAME,
             ),
             reply_markup=reply_markup,
+            disable_web_page_preview=True
         )
         await asyncio.sleep(
             2
