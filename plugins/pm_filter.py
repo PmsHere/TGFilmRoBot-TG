@@ -63,7 +63,7 @@ logger.setLevel(logging.ERROR)
 BUTTONS = {}
 SPELL_CHECK = {}
 INVITE = {}
-
+img = "https://graph.org/file/2e766118e237254acdb7d.jpg"
 
 @Client.on_message(
     filters.text & filters.private & filters.incoming & filters.user(AUTH_USERS)
@@ -916,11 +916,14 @@ async def auto_filter(client, msg, spoll=False):
             )
         except Exception as e:
             logger.exception(e)
-            __msg = await message.reply_text(
-                cap, reply_markup=InlineKeyboardMarkup(btn)
+            __msg = await message.reply_photo(
+            photo=img,
+            caption=cap, reply_markup=InlineKeyboardMarkup(btn)
             )
     else:
-        __msg = await message.reply_text(cap, reply_markup=InlineKeyboardMarkup(btn))
+        __msg = await message.reply_photo(
+            photo=img,
+            caption=cap, reply_markup=InlineKeyboardMarkup(btn))
     if spoll:
         await msg.message.delete()
     if __msg:
@@ -1189,11 +1192,14 @@ async def pm_auto_filter(client, msg):
             )
         except Exception as e:
             logger.exception(e)
-            __msg = await message.reply_text(
-                cap, reply_markup=InlineKeyboardMarkup(btn)
+            __msg = await message.reply_photo(
+                photo=img,
+                caption=cap, reply_markup=InlineKeyboardMarkup(btn)
             )
     else:
-        __msg = await message.reply_text(cap, reply_markup=InlineKeyboardMarkup(btn)
+        __msg = await message.reply_photo(
+            photo=img,
+            caption=cap, reply_markup=InlineKeyboardMarkup(btn)
                                          
             )
 
