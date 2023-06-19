@@ -43,7 +43,7 @@ auth_users = [
     for user in environ.get('AUTH_USERS', '').split()
 ]
 AUTH_USERS = (auth_users + ADMINS) if auth_users else []
-auth_channel = environ.get('AUTH_CHANNEL', '-1001715035701')
+auth_channel = environ.get('AUTH_CHANNEL', '-1001436931259')
 auth_grp = environ.get('AUTH_GROUP', '-1001258893901 -1001164202707 -1001702528738 -1001437868731 -1001449723794 -1001553701267 -1001449723794 -1001507746039 -1001738042448 -1001687626810 -1001696385814 -1001987580262')
 AUTH_CHANNEL = (
     int(auth_channel) if auth_channel and id_pattern.search(auth_channel) else None
