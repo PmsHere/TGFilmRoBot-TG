@@ -67,14 +67,12 @@ img = "https://graph.org/file/2e766118e237254acdb7d.jpg"
 
 
 
-
 @Client.on_message(
     filters.text & filters.private & filters.incoming & filters.user(AUTH_USERS)
     if AUTH_USERS
     else filters.text & filters.private & filters.incoming
 )
 async def filter(client, message):
-    settings = await get_settings(message.chat.id)
     fsub_id = await force_sub_db.get_fsub()
     jr = await force_sub_db.getJoin()
     invite_link = INVITE.get(f"{fsub_id}_{jr}")
@@ -112,6 +110,7 @@ async def filter(client, message):
 
     if re.findall("((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)", message.text):
         return
+
     if 2 < len(message.text) < 100:
         search = message.text
         files, offset, total_results = await get_search_results(
@@ -119,30 +118,16 @@ async def filter(client, message):
         )
 
         pre = "filep" if settings["file_secure"] else "file"
-        if settings["button"]:
-            btn = [
-                [
-                    InlineKeyboardButton(
-                        text=f"[{get_size(file.file_size)}] {file.file_name}",
-                        callback_data=f"{pre}#{file.file_id}",
-                    ),
-                ]
-                for file in files
+
+        btn = [
+            [
+                InlineKeyboardButton(
+                    text=f"{file.file_name}",
+                    callback_data=f"{pre}#{file.file_id}",
+                )
             ]
-        else:
-            btn = [
-                [
-                    InlineKeyboardButton(
-                        text=f"{file.file_name}",
-                        callback_data=f"{pre}#{file.file_id}",
-                    ),
-                    InlineKeyboardButton(
-                        text=f"{get_size(file.file_size)}",
-                        callback_data=f"{pre}#{file.file_id}",
-                    ),
-                ]
-                for file in files
-            ]
+            for file in files
+        ]
 
         btn.insert(
             0,
@@ -172,12 +157,13 @@ async def filter(client, message):
         else:
             btn.append([InlineKeyboardButton(text="🗓 1/1", callback_data="pages")])
 
-        await message.reply_photo(
-            photo=img,
+        await message.reply_document(
+            document=files[0].file_id,
             caption=f"<b>Total Results:</b> <code>{total_results}</code>\n<b>Movie Name:</b> <code>{search}</code>\n\n<b>© {(await client.get_me()).first_name}</b>",
             reply_markup=InlineKeyboardMarkup(btn),
             parse_mode=enums.ParseMode.HTML,
         )
+
 
 
 
