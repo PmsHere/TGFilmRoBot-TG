@@ -26,6 +26,8 @@ BATCH_FILES = {}
 
 @Client.on_message(filters.command("start") & filters.incoming)
 async def start(client, message):
+    invite_link = await getInviteLink(client)
+
     if message.chat.type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
         buttons = [
             [
@@ -65,7 +67,7 @@ async def start(client, message):
     if len(message.command) != 2:
         buttons = [
             [
-                InlineKeyboardButton("⚜️Channel⚜️", url="https://t.me/+UB6y4_vlTIY3N2Vl"),
+                InlineKeyboardButton("⚜️Channel⚜️", url=invite_link.invite_link),
                 InlineKeyboardButton("⚜️Group⚜️", url="https://t.me/+UB6y4_vlTIY3N2Vl"),
             ],
         ]
