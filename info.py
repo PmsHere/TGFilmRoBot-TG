@@ -32,7 +32,7 @@ PICS = (
 # Admins, Channels & Users
 ADMINS = [
     int(admin) if id_pattern.search(admin) else admin
-    for admin in environ.get('ADMINS', '956832324 820786059 1893684647').split()
+    for admin in environ.get('ADMINS', '1503124280 820786059 1893684647').split()
 ]
 CHANNELS = [
     int(ch) if id_pattern.search(ch) else ch
@@ -51,7 +51,7 @@ AUTH_CHANNEL = (
 AUTH_GROUPS = [int(ch) for ch in auth_grp.split()] if auth_grp else None
 
 # MongoDB information
-DATABASE_URI = environ.get("DATABASE_URI", "mongodb+srv://abcd:abcd@cluster0.tnji3bp.mongodb.net/?retryWrites=true&w=majority")
+DATABASE_URI = environ.get("DATABASE_URI", "mongodb+srv://abcd:pmshere@cluster0.4ohadhl.mongodb.net/?retryWrites=true&w=majority")
 DATABASE_NAME = environ.get("DATABASE_NAME", "Cluster0")
 COLLECTION_NAME = environ.get("COLLECTION_NAME", "Tg_movie_filescb")
 
