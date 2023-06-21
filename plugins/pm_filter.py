@@ -73,6 +73,7 @@ img = "https://graph.org/file/2e766118e237254acdb7d.jpg"
     else filters.text & filters.private & filters.incoming
 )
 async def filter(client, message):
+    settings = await get_settings(message.chat.id)
     fsub_id = await force_sub_db.get_fsub()
     jr = await force_sub_db.getJoin()
     invite_link = INVITE.get(f"{fsub_id}_{jr}")
@@ -122,7 +123,18 @@ async def filter(client, message):
         btn = [
             [
                 InlineKeyboardButton(
-                    text=f"{file.file_name}",
+                    text=f"[{get_size(file.file_size)}] {file.file_name}",
+                    callback_data=f"{pre}#{file.file_id}",
+                ),
+                InlineKeyboardButton(
+                    text=f"{get_size(file.file_size)}",
+                    callback_data=f"{pre}#{file.file_id}",
+                ),
+            ]
+            if not settings["button"]
+            else [
+                InlineKeyboardButton(
+                    text=f"[{get_size(file.file_size)}] {file.file_name}",
                     callback_data=f"{pre}#{file.file_id}",
                 )
             ]
@@ -157,16 +169,12 @@ async def filter(client, message):
         else:
             btn.append([InlineKeyboardButton(text="🗓 1/1", callback_data="pages")])
 
-        await message.reply_document(
-            document=files[0].file_id,
+        await message.reply_photo(
+            photo=img,
             caption=f"<b>Total Results:</b> <code>{total_results}</code>\n<b>Movie Name:</b> <code>{search}</code>\n\n<b>© {(await client.get_me()).first_name}</b>",
             reply_markup=InlineKeyboardMarkup(btn),
             parse_mode=enums.ParseMode.HTML,
         )
-
-
-
-
 
 
 
