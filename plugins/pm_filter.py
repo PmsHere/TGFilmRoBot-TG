@@ -63,8 +63,6 @@ logger.setLevel(logging.ERROR)
 BUTTONS = {}
 SPELL_CHECK = {}
 INVITE = {}
-img = "https://graph.org/file/2e766118e237254acdb7d.jpg"
-
 
 
 @Client.on_message(
@@ -72,110 +70,8 @@ img = "https://graph.org/file/2e766118e237254acdb7d.jpg"
     if AUTH_USERS
     else filters.text & filters.private & filters.incoming
 )
-async def filter(client, message):
-    settings = await get_settings(message.chat.id)
-    fsub_id = await force_sub_db.get_fsub()
-    jr = await force_sub_db.getJoin()
-    invite_link = INVITE.get(f"{fsub_id}_{jr}")
-
-    if not invite_link:
-        invite_link = await client.create_chat_invite_link(
-            chat_id=int(fsub_id), creates_join_request=jr
-        )
-        INVITE[f"{fsub_id}_{jr}"] = invite_link
-
-    if not await present_in_userbase(message.from_user.id):
-        await add_to_userbase(message.from_user.id)
-
-    if message.text.startswith("/"):
-        return
-
-    if fsub_id:
-        if not await is_subscribed(client, message):
-            await client.send_message(
-                chat_id=message.from_user.id,
-                text=f"**♦️ READ THIS INSTRUCTION ♦️**\n\n__🗣 നിങ്ങൾ ചോദിക്കുന്ന സിനിമകൾ നിങ്ങൾക്ക് ലഭിക്കണം എന്നുണ്ടെങ്കിൽ നിങ്ങൾ താഴെ കൊടുത്തിട്ടുള്ള ചാനലിൽ ജോയിൻ ചെയ്യണം. ജോയിൻ ചെയ്ത ശേഷം വീണ്ടും ഗ്രൂപ്പിൽ പോയി ആ ബട്ടനിൽ അമർത്തിയാൽ നിങ്ങൾക്ക് ഞാൻ ആ സിനിമ പ്രൈവറ്റ് ആയി അയച്ചു തരുന്നതാണ്..😍\n\n🗣 In Order To Get The Movie Requested By You in Our Groups, You Will Have To Join Our Official Channel First. After That, Try Accessing That Movie Again From Our Group. I'll Send You That Movie Privately 🙈__\n\n**👇 JOIN THIS CHANNEL & TRY 👇\n\n[{invite_link.invite_link}]**",
-                reply_markup=InlineKeyboardMarkup(
-                    [
-                        [
-                            InlineKeyboardButton(
-                                "💢𝙹𝚘𝚒𝚗 𝙼𝚢 𝙲𝚑𝚊𝚗𝚗𝚎𝚕💢", url=invite_link.invite_link
-                            )
-                        ]
-                    ]
-                ),
-                parse_mode=enums.ParseMode.MARKDOWN,
-                disable_web_page_preview=True,
-            )
-            return
-
-    if re.findall("((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)", message.text):
-        return
-
-    if 2 < len(message.text) < 100:
-        search = message.text
-        files, offset, total_results = await get_search_results(
-            search.lower(), offset=0, filter=True
-        )
-
-        pre = "filep" if settings["file_secure"] else "file"
-
-        btn = [
-            [
-                InlineKeyboardButton(
-                    text=f"[{get_size(file.file_size)}] {file.file_name}",
-                    callback_data=f"{pre}#{file.file_id}",
-                ),
-                InlineKeyboardButton(
-                    text=f"{get_size(file.file_size)}",
-                    callback_data=f"{pre}#{file.file_id}",
-                ),
-            ]
-            if not settings["button"]
-            else [
-                InlineKeyboardButton(
-                    text=f"[{get_size(file.file_size)}] {file.file_name}",
-                    callback_data=f"{pre}#{file.file_id}",
-                )
-            ]
-            for file in files
-        ]
-
-        btn.insert(
-            0,
-            [
-                InlineKeyboardButton(
-                    "💢 𝗝𝗼𝗶𝗻 𝗢𝘂𝗿 𝗠𝗮𝗶𝗻 𝗰𝗵𝗮𝗻𝗻𝗲𝗹 💢",
-                    url=invite_link.invite_link
-                )
-            ],
-        )
-
-        if offset != "":
-            key = f"{message.chat.id}-{message.id}"
-            BUTTONS[key] = search
-            req = message.from_user.id if message.from_user else 0
-            btn.append(
-                [
-                    InlineKeyboardButton(
-                        text=f"🗓 1/{math.ceil(int(total_results) / 10)}",
-                        callback_data="pages",
-                    ),
-                    InlineKeyboardButton(
-                        text="NEXT ⏩", callback_data=f"next_{req}_{key}_{offset}"
-                    ),
-                ]
-            )
-        else:
-            btn.append([InlineKeyboardButton(text="🗓 1/1", callback_data="pages")])
-
-        await message.reply_photo(
-            photo=img,
-            caption=f"<b>Total Results:</b> <code>{total_results}</code>\n<b>Movie Name:</b> <code>{search}</code>\n\n<b>© {(await client.get_me()).first_name}</b>",
-            reply_markup=InlineKeyboardMarkup(btn),
-            parse_mode=enums.ParseMode.HTML,
-        )
-
+async def private_filter(client, message):
+        await pm_auto_filter(client, message)
 
 
 @Client.on_message(filters.group & filters.text & filters.incoming)
@@ -1003,7 +899,7 @@ async def auto_filter(client, msg, spoll=False):
             **locals(),
         )
     else:
-      cap = f"<b>Total Files:</b><code>{len(files)}</code>\n<b>Movie Name:</b> <code>{search}</code>\n\n<b>© മഹാദേവൻ</b>"
+        cap = f"<b>ആദ്യം ഈ ബോട്ടിൽ പോയിട്ട് ജോയിൻ ആവുക. അതിനു ശേഷം ഇവിടെ മൂവി ക്ലിക്ക് ചെയ്യുക.\nബോട്ട് 👉@Lord_Shiva_Bot👈.\nHere is what i found for your query👇👇👇👇\n #{search}</b>"
     __msg = None
     if imdb and imdb.get("poster"):
         try:
@@ -1020,14 +916,11 @@ async def auto_filter(client, msg, spoll=False):
             )
         except Exception as e:
             logger.exception(e)
-            __msg = await message.reply_photo(
-            photo=img,
-            caption=cap, reply_markup=InlineKeyboardMarkup(btn)
+            __msg = await message.reply_text(
+                cap, reply_markup=InlineKeyboardMarkup(btn)
             )
     else:
-        __msg = await message.reply_photo(
-            photo=img,
-            caption=cap, reply_markup=InlineKeyboardMarkup(btn))
+        __msg = await message.reply_text(cap, reply_markup=InlineKeyboardMarkup(btn))
     if spoll:
         await msg.message.delete()
     if __msg:
@@ -1133,8 +1026,187 @@ async def advantage_spell_chok(msg, client):
         run_date=datetime.now() + timedelta(seconds=300),
     )
 
-                                              
-                    
+
+async def pm_auto_filter(client, msg):
+    message = msg
+    settings = await get_settings(message.chat.id)
+    if message.text.startswith("/"):
+        return  # ignore commands
+    if re.findall("((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)", message.text):
+        return
+    if 2 < len(message.text) < 100:
+        search = message.text
+        files, offset, total_results = await get_search_results(
+            search.lower(), offset=0, filter=True
+        )
+        if not files:
+            if settings["spell_check"]:
+                return await advantage_spell_chok(msg, client)
+            else:
+                return
+    else:
+        return
+
+    fsub_id = await force_sub_db.get_fsub()
+    jr = await force_sub_db.getJoin()
+    invite_link = INVITE.get(f"{fsub_id}_{jr}")
+
+    if not invite_link:
+        invite_link = await client.create_chat_invite_link(
+            chat_id=int(fsub_id), creates_join_request=jr
+        )
+        INVITE[f"{fsub_id}_{jr}"] = invite_link
+
+    if not await present_in_userbase(message.from_user.id):
+        await add_to_userbase(message.from_user.id)
+        if message.text.startswith("/"):
+            return
+        if fsub_id:
+            await client.send_message(
+                chat_id=message.from_user.id,
+                text=f"**♦️ READ THIS INSTRUCTION ♦️**\n\n__🗣 To receive the requested movies, you must first join our official channel. After joining, try accessing the movie again from our group. I will send you the movie privately. 😍\n\n🗣 Join our official channel and try:\n\n[{invite_link.invite_link}]**",
+                reply_markup=InlineKeyboardMarkup(
+                    [
+                        [
+                            InlineKeyboardButton(
+                                "💢 Join My Channel 💢", url=invite_link.invite_link
+                            )
+                        ]
+                    ]
+                ),
+                parse_mode=enums.ParseMode.MARKDOWN,
+                disable_web_page_preview=True,
+            )
+    pre = "filep" if settings["file_secure"] else "file"
+    if settings["button"]:
+        btn = [
+            [
+                InlineKeyboardButton(
+                    text=f"[{get_size(file.file_size)}] {file.file_name}",
+                    callback_data=f"{pre}#{file.file_id}",
+                ),
+            ]
+            for file in files
+        ]
+    else:
+        btn = [
+            [
+                InlineKeyboardButton(
+                    text=f"{file.file_name}",
+                    callback_data=f"{pre}#{file.file_id}",
+                ),
+                InlineKeyboardButton(
+                    text=f"{get_size(file.file_size)}",
+                    callback_data=f"{pre}#{file.file_id}",
+                ),
+            ]
+            for file in files
+        ]
+
+    btn.insert(
+        0,
+        [
+            InlineKeyboardButton(
+                "💢 𝗝𝗼𝗶𝗻 𝗢𝘂𝗿 𝗠𝗮𝗶𝗻 𝗰𝗵𝗮𝗻𝗻𝗲𝗹 💢",
+                url=invite_link.invite_link
+            )
+        ],
+    )
+
+    if offset != "":
+        key = f"{message.chat.id}-{message.id}"
+        BUTTONS[key] = search
+        req = message.from_user.id if message.from_user else 0
+        btn.append(
+            [
+                InlineKeyboardButton(
+                    text=f"🗓 1/{math.ceil(int(total_results) / 10)}",
+                    callback_data="pages",
+                ),
+                InlineKeyboardButton(
+                    text="NEXT ⏩", callback_data=f"next_{req}_{key}_{offset}"
+                ),
+            ]
+        )
+    else:
+        btn.append([InlineKeyboardButton(text="🗓 1/1", callback_data="pages")])
+
+    imdb = (
+        await get_poster(search, file=(files[0]).file_name)
+        if settings["imdb"]
+        else None
+    )
+
+    TEMPLATE = settings["template"]
+    if imdb:
+        cap = TEMPLATE.format(
+            query=search,
+            title=imdb["title"],
+            votes=imdb["votes"],
+            aka=imdb["aka"],
+            seasons=imdb["seasons"],
+            box_office=imdb["box_office"],
+            localized_title=imdb["localized_title"],
+            kind=imdb["kind"],
+            imdb_id=imdb["imdb_id"],
+            cast=imdb["cast"],
+            runtime=imdb["runtime"],
+            countries=imdb["countries"],
+            certificates=imdb["certificates"],
+            languages=imdb["languages"],
+            director=imdb["director"],
+            writer=imdb["writer"],
+            producer=imdb["producer"],
+            composer=imdb["composer"],
+            cinematographer=imdb["cinematographer"],
+            music_team=imdb["music_team"],
+            distributors=imdb["distributors"],
+            release_date=imdb["release_date"],
+            year=imdb["year"],
+            genres=imdb["genres"],
+            poster=imdb["poster"],
+            plot=imdb["plot"],
+            rating=imdb["rating"],
+            url=imdb["url"],
+            **locals(),
+        )
+    else:
+        cap = f"<b>ആദ്യം ഈ ബോട്ടിൽ പോയിട്ട് ജോയിൻ ആവുക. അതിനു ശേഷം ഇവിടെ മൂവി ക്ലിക്ക് ചെയ്യുക.\nബോട്ട് 👉@Lord_Shiva_Bot👈.\nHere is what i found for your query👇👇👇👇\n #{search}</b>"
+
+    __msg = None
+    if imdb and imdb.get("poster"):
+        try:
+            __msg = await message.reply_photo(
+                photo=imdb.get("poster"),
+                caption=cap[:1024],
+                reply_markup=InlineKeyboardMarkup(btn),
+            )
+        except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
+            pic = imdb.get("poster")
+            poster = pic.replace(".jpg", "._V1_UX360.jpg")
+            __msg = await message.reply_photo(
+                photo=poster, caption=cap[:1024], reply_markup=InlineKeyboardMarkup(btn)
+            )
+        except Exception as e:
+            logger.exception(e)
+            __msg = await message.reply_text(
+                cap, reply_markup=InlineKeyboardMarkup(btn)
+            )
+    else:
+        __msg = await message.reply_text(cap, reply_markup=InlineKeyboardMarkup(btn)
+                                         
+            )
+
+      
+                
+    
+
+
+
+
+
+
+
 async def manual_filters(client, message, text=False):
     group_id = message.chat.id
     name = text or message.text
