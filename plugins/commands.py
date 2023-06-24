@@ -30,9 +30,11 @@ async def start(client, message):
 
     if message.chat.type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
         buttons = [
+            [InlineKeyboardButton("🌟 Movies", url="https://t.me/MalluTorentzTG")],
             [
-                InlineKeyboardButton("⚜️Channel⚜️", url=invite_link.invite_link),
-                InlineKeyboardButton("⚜️Group⚜️", url="https://t.me/+UB6y4_vlTIY3N2Vl"),
+                InlineKeyboardButton(
+                    "ℹ️ Help", url=f"https://t.me/{temp.U_NAME}?start=help"
+                ),
             ],
         ]
         reply_markup = InlineKeyboardMarkup(buttons)
@@ -67,8 +69,21 @@ async def start(client, message):
     if len(message.command) != 2:
         buttons = [
             [
-                InlineKeyboardButton("⚜️Channel⚜️", url=invite_link.invite_link),
-                InlineKeyboardButton("⚜️Group⚜️", url="https://t.me/+UB6y4_vlTIY3N2Vl"),
+                InlineKeyboardButton(
+                    "📮 ᴄᴏᴍᴘʟᴀɪɴᴛꜱ/ ꜰᴇᴇᴅʙᴀᴄᴋ" ,
+                    url="http://t.me/PmsHereRobot",
+                )
+            ],
+            [
+                InlineKeyboardButton("ᴍᴇɴᴜ ⚙", callback_data="help"),
+                InlineKeyboardButton("🪄 ᴍᴀɢɪᴄ", url=f"http://t.me/{temp.U_NAME}?startgroup=true"),
+            ],
+            [
+                InlineKeyboardButton("ᴏᴡɴᴇʀ 🧠", url="http://t.me/chiyaan_dhruv"),
+                InlineKeyboardButton("📝 ʀᴇᴀᴅ ᴛʜɪꜱ", callback_data="about"),
+            ],
+            [
+                InlineKeyboardButton("❤️‍🔥 ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴍᴀʟʟᴜ ᴛᴏʀᴇɴᴛᴢ", url="http://t.me/Mallutorentztg"),
             ],
         ]
         reply_markup = InlineKeyboardMarkup(buttons)
@@ -132,8 +147,21 @@ async def start(client, message):
     ]:
         buttons = [
             [
-                InlineKeyboardButton("⚜️Channel⚜️", url="https://t.me/+UB6y4_vlTIY3N2Vl"),
-                InlineKeyboardButton("⚜️Group⚜️", url="https://t.me/+UB6y4_vlTIY3N2Vl"),
+                InlineKeyboardButton(
+                    "📮 ᴄᴏᴍᴘʟᴀɪɴᴛꜱ/ ꜰᴇᴇᴅʙᴀᴄᴋ" ,
+                    url="http://t.me/PmsHereRobot",
+                )
+            ],
+            [
+                InlineKeyboardButton("ᴍᴇɴᴜ ⚙", callback_data="help"),
+                InlineKeyboardButton("🪄 ᴍᴀɢɪᴄ", url=f"http://t.me/{temp.U_NAME}?startgroup=true"),
+            ],
+            [
+                InlineKeyboardButton("ᴏᴡɴᴇʀ 🧠", url="http://t.me/chiyaan_dhruv"),
+                InlineKeyboardButton("📝 ʀᴇᴀᴅ ᴛʜɪꜱ", callback_data="about"),
+            ],
+            [
+                InlineKeyboardButton("❤️‍🔥 ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴍᴀʟʟᴜ ᴛᴏʀᴇɴᴛᴢ", url="http://t.me/Mallutorentztg"),
             ],
         ]
         reply_markup = InlineKeyboardMarkup(buttons)
