@@ -554,6 +554,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             ),
             reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML,
+            disable_web_page_preview=True,
         )
         await query.answer("Piracy Is Crime")
     elif query.data == "help":
