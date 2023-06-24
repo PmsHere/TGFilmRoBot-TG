@@ -15,10 +15,10 @@ def is_enabled(value, default):
 
 # Bot information
 SESSION = environ.get("SESSION", "Media_search")
-API_ID = environ.get('API_ID', '2961089')
-API_HASH = environ.get('API_HASH', '0eb4af8d3b257fd32cd7daf93274850f')
-BOT_TOKEN = environ.get('BOT_TOKEN', '1953545966:AAEoURhpLegixvmBmtk5-nbredCMvlym4h0')
-USER_SESSION = environ.get('USER_SESSION', 'BQGyW7cAtjEW8XT3aiE4mq6PnWrlxVGGKwk7GhCCuzi_1-hC2uEVNE6ZAZDgkU6V1BTI5jWLqrWtNkr_MKLJ2yJnGGG23cSTY7HOoXVE1rcRB-i2H6D5iJCKuvAqj3w4pjyta6Ij-kt93nJhqFlToC2Y_768Rrb6dpiqVrO2ZFiGgkr8Jla_Kla77HhXu-jXNaYdo3PpFGZz6SyasVprrwRokw2qocyQXicdrMu7scdctsNcJhPizivufZ8qEpl_eTan2xdTlZ4vIXWvchpHa9jRKs018zRoaULe9RvGpCuc-m3uLi7qE-aij3jJl6pZIk2HZpJcPR0gZKrAWSitQlw8BqEnEwAAAABQYULVAA')
+API_ID = environ.get('API_ID', '29026554')
+API_HASH = environ.get('API_HASH', '5eb020daee923d6fa87a631a20470348')
+BOT_TOKEN = environ.get('BOT_TOKEN', '6225915907:AAHLF75yGCA6Ii2lwc7Bh5WXnmdBlEfU6vE')
+USER_SESSION = environ.get('USER_SESSION', 'BQG66PoApzwxiFO0iVHQcWWwVkHXoTzJPunVo7Hldu1d0qmwaZ55kHcxBVF8ExBiYeQCgkQeHRNbbJAu-fqSHewCQFr70KvCW8Rvgw_t4DgI6OU5RG8Els2Eesk9UzhSp7Kj3_rSa0HWbSpnlSA61HxHNLi_Rug2kmP5Y2TUpEr_aoQe_prkEBbqNYI38jnbb7QYOv_vsMo7DGDOfi-ZLvEQmfVoq77nzS6NILFTb0jFwM6waKS8__t4dUWH5Yp4c5bI9cb0CSzF-z1DyUjxyChlS9ZaDQpcYBZ3YYi-scy_KuvQ0r1PZI8CR_tKo-UQNJQGVNoaKKTJZnyv_TZMFcW6FQl3BwAAAAFe6bysAA')
 # Bot settings
 CACHE_TIME = int(environ.get("CACHE_TIME", 300))
 USE_CAPTION_FILTER = bool(environ.get("USE_CAPTION_FILTER", False))
@@ -51,7 +51,7 @@ AUTH_CHANNEL = (
 AUTH_GROUPS = [int(ch) for ch in auth_grp.split()] if auth_grp else None
 
 # MongoDB information
-DATABASE_URI = environ.get("DATABASE_URI", "mongodb+srv://abcd:pmshere@cluster0.4ohadhl.mongodb.net/?retryWrites=true&w=majority")
+DATABASE_URI = environ.get("DATABASE_URI", "mongodb+srv://pmshere:pmshere@cluster0.cpw5ove.mongodb.net/?retryWrites=true&w=majority")
 DATABASE_NAME = environ.get("DATABASE_NAME", "Cluster0")
 COLLECTION_NAME = environ.get("COLLECTION_NAME", "Tg_movie_filescb")
 
