@@ -530,8 +530,21 @@ async def cb_handler(client: Client, query: CallbackQuery):
     elif query.data == "start":
         buttons = [
             [
-                InlineKeyboardButton("⚜️Channel⚜️", url=invite_link.invite_link),
-                InlineKeyboardButton("⚜️Group⚜️", url=f"https://t.me/+UB6y4_vlTIY3N2Vl"),
+                InlineKeyboardButton(
+                    "📮 ᴄᴏᴍᴘʟᴀɪɴᴛꜱ/ ꜰᴇᴇᴅʙᴀᴄᴋ" ,
+                    url="http://t.me/PmsHereRobot",
+                )
+            ],
+            [
+                InlineKeyboardButton("ᴍᴇɴᴜ ⚙", callback_data="help"),
+                InlineKeyboardButton("🪄 ᴍᴀɢɪᴄ", url=f"http://t.me/{temp.U_NAME}?startgroup=true"),
+            ],
+            [
+                InlineKeyboardButton("ᴏᴡɴᴇʀ 🧠", url="http://t.me/chiyaan_dhruv"),
+                InlineKeyboardButton("📝 ʀᴇᴀᴅ ᴛʜɪꜱ", callback_data="about"),
+            ],
+            [
+                InlineKeyboardButton("❤️‍🔥 ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴍᴀʟʟᴜ ᴛᴏʀᴇɴᴛᴢ", url="http://t.me/Mallutorentztg"),
             ],
         ]
         reply_markup = InlineKeyboardMarkup(buttons)
@@ -899,7 +912,7 @@ async def auto_filter(client, msg, spoll=False):
             **locals(),
         )
     else:
-        cap = f"<b>ആദ്യം ഈ ബോട്ടിൽ പോയിട്ട് ജോയിൻ ആവുക. അതിനു ശേഷം ഇവിടെ മൂവി ക്ലിക്ക് ചെയ്യുക.\nബോട്ട് 👉@Lord_Shiva_Bot👈.\nHere is what i found for your query👇👇👇👇\n #{search}</b>"
+        cap = f"<b>ആദ്യം ഈ ബോട്ടിൽ പോയിട്ട് ജോയിൻ ആവുക. അതിനു ശേഷം ഇവിടെ മൂവി ക്ലിക്ക് ചെയ്യുക.\nബോട്ട് 👉@TGFilmRobot👈.\nHere is what i found for your query👇👇👇👇\n #{search}</b>"
     __msg = None
     if imdb and imdb.get("poster"):
         try:
@@ -1171,7 +1184,7 @@ async def pm_auto_filter(client, msg):
             **locals(),
         )
     else:
-        cap = f"<b>ആദ്യം ഈ ബോട്ടിൽ പോയിട്ട് ജോയിൻ ആവുക. അതിനു ശേഷം ഇവിടെ മൂവി ക്ലിക്ക് ചെയ്യുക.\nബോട്ട് 👉@Lord_Shiva_Bot👈.\nHere is what i found for your query👇👇👇👇\n #{search}</b>"
+        cap = f"<b>ആദ്യം ഈ ബോട്ടിൽ പോയിട്ട് ജോയിൻ ആവുക. അതിനു ശേഷം ഇവിടെ മൂവി ക്ലിക്ക് ചെയ്യുക.\nബോട്ട് 👉@TGFilmRobot👈.\nHere is what i found for your query👇👇👇👇\n #{search}</b>"
 
     __msg = None
     if imdb and imdb.get("poster"):
