@@ -168,7 +168,7 @@ async def filter(client, message):
             btn.append([InlineKeyboardButton(text="🗓 1/1", callback_data="pages")])
 
         await message.reply_text(
-            text=f"<b>Total Results:</b> <code>{total_results}</code>\n<b>Movie Name:</b> <code>{search}</code>\n\n<b>© {(await client.get_me()).first_name}</b>",
+            text=f"<b>ആദ്യം ഈ ബോട്ടിൽ പോയിട്ട് ജോയിൻ ആവുക. അതിനു ശേഷം ഇവിടെ മൂവി ക്ലിക്ക് ചെയ്യുക.\nബോട്ട് 👉@TGFilmRobot👈.\nHere is what i found for your query👇👇👇👇\n #{search}</b>",
             reply_markup=InlineKeyboardMarkup(btn),
             parse_mode=enums.ParseMode.HTML,
 )
