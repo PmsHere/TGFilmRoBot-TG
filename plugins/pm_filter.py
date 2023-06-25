@@ -167,9 +167,8 @@ async def filter(client, message):
         else:
             btn.append([InlineKeyboardButton(text="🗓 1/1", callback_data="pages")])
 
-        await message.reply_photo(
-            photo=img,
-            caption=f"<b>Total Results:</b> <code>{total_results}</code>\n<b>Movie Name:</b> <code>{search}</code>\n\n<b>© {(await client.get_me()).first_name}</b>",
+        await message.reply_text(
+            text=f"<b>Total Results:</b> <code>{total_results}</code>\n<b>Movie Name:</b> <code>{search}</code>\n\n<b>© {(await client.get_me()).first_name}</b>",
             reply_markup=InlineKeyboardMarkup(btn),
             parse_mode=enums.ParseMode.HTML,
 )
