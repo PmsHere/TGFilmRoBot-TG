@@ -4,7 +4,7 @@ import re
 from struct import pack
 
 from marshmallow.exceptions import ValidationError
-from motor.motor_asyncio import AsyncIOMotorClient
+from motor.motor_async import AsyncIOMotorClient
 from pymongo.errors import DuplicateKeyError
 from pyrogram.file_id import FileId
 from umongo import Document, Instance, fields
