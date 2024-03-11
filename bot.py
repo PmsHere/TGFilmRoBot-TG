@@ -2,6 +2,8 @@ import logging
 import logging.config
 import ntplib
 from time import ctime
+from typing import AsyncGenerator, Optional, Union  # Add this import
+
 from pyrogram import Client, __version__, types
 from pyrogram.raw.all import layer
 from database.ia_filterdb import Media
