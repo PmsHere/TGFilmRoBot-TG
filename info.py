@@ -17,8 +17,8 @@ def is_enabled(value, default):
 SESSION = environ.get("SESSION", "Media_search")
 API_ID = environ.get('API_ID', '4534665')
 API_HASH = environ.get('API_HASH', '366f7a24d64c5d6578df57e3b5b03fa0')
-BOT_TOKEN = environ.get('BOT_TOKEN', '5353888647:AAEeteJIH8ylNswSF0AmEerws9jwCagb0Q0')
-USER_SESSION = environ.get('USER_SESSION', 'BQAckvgAoDTEOPXiiL3m9rOc-Lw_XzS_EucxRfpcSJNR1M3zobWKf-Tq3f7N_xgYMPoPLlwPygUtTka2iWCyI3Z7w6pgPNTijxbQa-jTPfSd6PIYMKyKZUOVDQXasBKHano2705dEfNLdPURCfeXiW7yxJbg0lTN0K5FCwQrGgnhuQRgW_KtAXYynp3kRntx8FipmW0joYjJjIl8EsvJX84vYfSBNThJvc11ktKQZFSPHM-4WgE5syvhxBX9EnOQ6WpopwZlBFvhpZOC7eTfRJhVjbIfB_mLj0v21PskTqsoWYwjgJ12ZAlthu7F7Rez16mDYfGeBHOgCF43uIO_4J7H4C5jjwAAAABctJvFAA')
+BOT_TOKEN = environ.get('BOT_TOKEN', '5192109951:AAEP1ENOXetFX8VxuiGpFY1E28hQPl98TlE')
+USER_SESSION = environ.get('USER_SESSION', 'BQAckvgAtwflu8rTTEfbB9xSiGw2i4pDpTsgMcys-YXLWy4xk7Djqy5SDKd6LSwSygY8kRMcVyhQmggbiAunxqv6yU8h5m8XOzoTaD1cdkcBjo7E_GRUAhtZ9__xjoA3gUm0TgXd5wy9hTc_KGBvysbHdq1v_JKbY9v92hlIsXmR4L9MJvB6NZZYXQK09-foScnJZiYm7HxY_pN-eazsj7Ri2qmCgEZwZsWnh_yqPjRqZJ_2-EKr3_SSuxnY4l3hyJrFyF80I-OL7zf95ghcvn5Fk1QYUUJmLJ9X4WI7kSwA6yjHwxSshxeDaD85XN2IFUh9vYElQQGMeKbQ5IpM85dKj9W1bQAAAABctJvFAA')
 # Bot settings
 CACHE_TIME = int(environ.get("CACHE_TIME", 300))
 USE_CAPTION_FILTER = bool(environ.get("USE_CAPTION_FILTER", False))
