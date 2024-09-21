@@ -32,7 +32,7 @@ PICS = (
 # Admins, Channels & Users
 ADMINS = [
     int(admin) if id_pattern.search(admin) else admin
-    for admin in environ.get('ADMINS', '1893684647').split()
+    for admin in environ.get('ADMINS', '1893684647 1555340229 2144812475').split()
 ]
 CHANNELS = [
     int(ch) if id_pattern.search(ch) else ch
